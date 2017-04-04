@@ -1,0 +1,9 @@
+{
+  "name": "gofg",
+  "description": "Getting Out For Good",
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rails db:migrate"
+    }
+  }
+}
