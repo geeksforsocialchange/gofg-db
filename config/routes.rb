@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  resources :peers
-  # People & subtypes
+  # People
   resources :people
   resources :participants
   resources :mentors
   resources :coaches
+
+  resources :peers
 
   # Organisations
   resources :organisations

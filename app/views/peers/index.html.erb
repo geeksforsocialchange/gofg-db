@@ -9,7 +9,6 @@
       <th>Mentor</th>
       <th>Peer start</th>
       <th>Peer end</th>
-      <th>Notes</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +20,6 @@
         <td><%= peer.mentor %></td>
         <td><%= peer.peer_start %></td>
         <td><%= peer.peer_end %></td>
-        <td><%= peer.notes %></td>
         <td><%= link_to 'Show', peer %></td>
         <td><%= link_to 'Edit', edit_peer_path(peer) %></td>
         <td><%= link_to 'Destroy', peer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -9,7 +9,7 @@
 Faker::Config.locale = 'en-GB'
 
 20.times do |n|
-  Participant.create(
+  participant = Participant.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     dob: Faker::Date.between(30.years.ago, 10.years.ago),
@@ -18,7 +18,7 @@ Faker::Config.locale = 'en-GB'
     twitter: Faker::Twitter.user[:screen_name],
     notes: Faker::Lorem.paragraph(3)
   )
-  Mentor.create(
+  mentor = Mentor.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     dob: Faker::Date.between(30.years.ago, 10.years.ago),
@@ -26,6 +26,12 @@ Faker::Config.locale = 'en-GB'
     tel: Faker::PhoneNumber.cell_phone,
     twitter: Faker::Twitter.user[:screen_name],
     notes: Faker::Lorem.paragraph(3)
+  )
+  Peer.create(
+    mentor: mentor,
+    participant: participant,
+    peer_start: Faker::Date.between(1.year.ago, Time.now),
+    notes: Faker::Lorem.paragraph(1)
   )
   Coach.create(
     first_name: Faker::Name.first_name,
