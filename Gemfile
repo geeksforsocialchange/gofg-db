@@ -59,6 +59,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'better_errors'
   gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :development do
@@ -75,6 +76,6 @@ end
 group :test do
   gem 'capybara'
   gem 'mocha'
-  gem 'shoulda'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', :require => false
 end
