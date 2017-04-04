@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+  repo_name = '#{repo_name}/#{repo_name}' unless repo_name.include?('/')
+  'https://github.com/#{repo_name}.git'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -32,28 +32,34 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Authentication
-gem "clearance"
+gem 'clearance'
 
 # Database mapping
-gem "rails-erd"
+gem 'rails-erd'
 
 # Attachments
-gem "paperclip"
+gem 'paperclip'
 
 # Theming etc
-gem "bootstrap"
-gem "formtastic"
-gem "cocoon"
-# markdown?
+gem 'bootstrap'
+gem 'formtastic'
+gem 'cocoon'
 
+# Listing and filtering
+gem 'smart_listing'
+
+# markdown?
 # geolocation?
 # mapping?
-
-# google authentication
+# google authentication?
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
+  gem 'better_errors'
+  gem 'database_cleaner'
+  gem 'guard'
 end
 
 group :development do
@@ -66,7 +72,7 @@ group :development do
 end
 
 group :test do
-  gem "capybara"
-  gem "mocha"
-  gem "factory_girl_rails"
+  gem 'capybara'
+  gem 'mocha'
+  gem 'simplecov', :require => false
 end
