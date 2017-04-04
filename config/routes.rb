@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :peers
   # People & subtypes
   resources :people
   resources :participants

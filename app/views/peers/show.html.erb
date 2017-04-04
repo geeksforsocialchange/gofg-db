@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Participant:</strong>
+  <%= @peer.participant %>
+</p>
+
+<p>
+  <strong>Mentor:</strong>
+  <%= @peer.mentor %>
+</p>
+
+<p>
+  <strong>Peer start:</strong>
+  <%= @peer.peer_start %>
+</p>
+
+<p>
+  <strong>Peer end:</strong>
+  <%= @peer.peer_end %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @peer.notes %>
+</p>
+
+<%= link_to 'Edit', edit_peer_path(@peer) %> |
+<%= link_to 'Back', peers_path %>
