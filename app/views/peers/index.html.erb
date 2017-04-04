@@ -16,8 +16,8 @@
   <tbody>
     <% @peers.each do |peer| %>
       <tr>
-        <td><%= peer.participant %></td>
-        <td><%= peer.mentor %></td>
+        <td><%= link_to peer.participant, participant_path(peer.participant) %></td>
+        <td><%= link_to peer.mentor, mentor_path(peer.mentor) %></td>
         <td><%= peer.peer_start %></td>
         <td><%= peer.peer_end %></td>
         <td><%= link_to 'Show', peer %></td>
