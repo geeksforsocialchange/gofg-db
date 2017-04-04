@@ -1,0 +1,2 @@
+class MeetingsController < EventsController
+end

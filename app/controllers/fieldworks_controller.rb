@@ -1,0 +1,2 @@
+class FieldworksController < EventsController
+end

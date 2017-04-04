@@ -1,0 +1,2 @@
+class Fieldwork < Event
+end

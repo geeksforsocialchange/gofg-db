@@ -41,14 +41,27 @@ end
 
 10.times do |n|
   Organisation.create(
-    name: Faker::Company.name,
-    activity: Faker::Team.sport,
-    email: Faker::Internet.email,
-    tel: Faker::PhoneNumber.cell_phone,
+    name:     Faker::Company.name,
+    activity: rand(0..3),
+    email:    Faker::Internet.email,
+    tel:      Faker::PhoneNumber.cell_phone,
     address_1: Faker::Address.street_address,
     address_2: Faker::Address.street_name,
-    city: Faker::Address.city,
+    city:     Faker::Address.city,
     postcode: Faker::Address.postcode,
-    notes: Faker::Lorem.paragraph(3)
+    notes:    Faker::Lorem.paragraph(3)
+  )
+end
+
+50.times do |n|
+  start = Faker::Date.between(1.year.ago, 2.years.from_now)
+  Event.create(
+    name: ["Boxing", "Theatre", "Football", "Dance"].sample + " session #{n}",
+    event_start: start,
+    event_end: start + rand(0..5).hours,
+    location: Faker::Company.name,
+    notes: Faker::Lorem.paragraph(1),
+    other_attendee_count: rand(0..20),
+    type: ["Fieldwork", "Activity", "Meeting"].sample
   )
 end

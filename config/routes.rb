@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # People & subtypes
   resources :people
   resources :participants
@@ -8,4 +7,10 @@ Rails.application.routes.draw do
 
   # Organisations
   resources :organisations
+
+  # Events
+  resources :events
+  resources :fieldworks
+  resources :meetings
+  resources :activities
 end
