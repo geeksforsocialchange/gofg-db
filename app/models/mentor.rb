@@ -1,0 +1,2 @@
+class Mentor < Person
+end
