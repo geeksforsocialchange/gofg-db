@@ -6,3 +6,4 @@ ADD Gemfile /gofg-db/Gemfile
 ADD Gemfile.lock /gofg-db/Gemfile.lock
 RUN bundle install
 ADD . /gofg-db
+ENTRYPOINT ["/gofg-db/docker-entry.sh"]
