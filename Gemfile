@@ -59,7 +59,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'better_errors'
   gem 'database_cleaner'
-  gem 'faker'
+  gem 'faker', git: "https://github.com/stympy/faker"
 end
 
 group :development do

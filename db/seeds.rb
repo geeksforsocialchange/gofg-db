@@ -16,6 +16,39 @@ Faker::Config.locale = 'en-GB'
     email: Faker::Internet.email,
     tel: Faker::PhoneNumber.cell_phone,
     twitter: Faker::Twitter.user[:screen_name],
-    notes: Faker::Lorem.paragraphs(3)
+    notes: Faker::Lorem.paragraph(3)
+  )
+  Mentor.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    dob: Faker::Date.between(30.years.ago, 10.years.ago),
+    email: Faker::Internet.email,
+    tel: Faker::PhoneNumber.cell_phone,
+    twitter: Faker::Twitter.user[:screen_name],
+    notes: Faker::Lorem.paragraph(3)
+  )
+  Coach.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    dob: Faker::Date.between(30.years.ago, 10.years.ago),
+    email: Faker::Internet.email,
+    tel: Faker::PhoneNumber.cell_phone,
+    twitter: Faker::Twitter.user[:screen_name],
+    is_accreditor: true,
+    notes: Faker::Lorem.paragraph(3)
+  )
+end
+
+10.times do |n|
+  Organisation.create(
+    name: Faker::Company.name,
+    activity: Faker::Team.sport,
+    email: Faker::Internet.email,
+    tel: Faker::PhoneNumber.cell_phone,
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city: Faker::Address.city,
+    postcode: Faker::Address.postcode,
+    notes: Faker::Lorem.paragraph(3)
   )
 end

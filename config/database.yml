@@ -24,9 +24,9 @@ default: &default
 development:
   <<: *default
   database: gofg-db_development
-  username: postgres
-  password:
-  host: db
+  username: kim
+  # password:
+  # host: db
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,9 +61,9 @@ development:
 test:
   <<: *default
   database: gofg-db_test
-  username: postgres
-  password:
-  host: test
+  username: kim
+  # password:
+  # host: test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

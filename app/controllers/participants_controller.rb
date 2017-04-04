@@ -1,0 +1,2 @@
+class ParticipantsController < PeopleController
+end

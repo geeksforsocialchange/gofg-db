@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  # People & subtypes
   resources :people
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :participants
+  resources :mentors
+  resources :coaches
+
+  # Organisations
+  resources :organisations
 end

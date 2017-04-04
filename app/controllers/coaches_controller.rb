@@ -1,0 +1,2 @@
+class CoachesController < PeopleController
+end
