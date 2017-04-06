@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MembershipsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @membership = memberships(:one)
+    @membership = create(:membership)
   end
 
   test "should get index" do

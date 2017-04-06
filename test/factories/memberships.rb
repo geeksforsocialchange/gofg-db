@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :membership do
-    person nil
-    organisation nil
+    person
+    organisation
     member_start "2017-04-06"
     member_end "2017-04-06"
     notes "MyText"

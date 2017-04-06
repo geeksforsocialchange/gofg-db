@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PeersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @peer = peers(:one)
+    @peer = create(:peer)
   end
 
   test "should get index" do
