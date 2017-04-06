@@ -10,4 +10,8 @@ class Organisation < ApplicationRecord
   def address
     "#{address_1}, #{address_2}, #{city}, #{postcode}"
   end
+
+  def to_s
+    name
+  end
 end

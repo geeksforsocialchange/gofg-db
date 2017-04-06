@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404154223) do
+ActiveRecord::Schema.define(version: 20170406145942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 20170404154223) do
     t.string   "type"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "organisation_id"
+    t.date     "member_start"
+    t.date     "member_end"
+    t.text     "notes"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organisation_id"], name: "index_memberships_on_organisation_id", using: :btree
+    t.index ["person_id"], name: "index_memberships_on_person_id", using: :btree
   end
 
   create_table "organisations", force: :cascade do |t|
@@ -79,4 +91,6 @@ ActiveRecord::Schema.define(version: 20170404154223) do
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end
 
+  add_foreign_key "memberships", "organisations"
+  add_foreign_key "memberships", "people"
 end

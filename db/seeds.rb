@@ -8,6 +8,20 @@
 
 Faker::Config.locale = 'en-GB'
 
+10.times do |n|
+  Organisation.create(
+    name:     Faker::Company.name,
+    activity: rand(0..3),
+    email:    Faker::Internet.email,
+    tel:      Faker::PhoneNumber.cell_phone,
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city:     Faker::Address.city,
+    postcode: Faker::Address.postcode,
+    notes:    Faker::Lorem.paragraph(3)
+  )
+end
+
 20.times do |n|
   participant = Participant.create(
     first_name: Faker::Name.first_name,
@@ -43,19 +57,12 @@ Faker::Config.locale = 'en-GB'
     is_accreditor: true,
     notes: Faker::Lorem.paragraph(3)
   )
-end
-
-10.times do |n|
-  Organisation.create(
-    name:     Faker::Company.name,
-    activity: rand(0..3),
-    email:    Faker::Internet.email,
-    tel:      Faker::PhoneNumber.cell_phone,
-    address_1: Faker::Address.street_address,
-    address_2: Faker::Address.street_name,
-    city:     Faker::Address.city,
-    postcode: Faker::Address.postcode,
-    notes:    Faker::Lorem.paragraph(3)
+  member_start = Faker::Date.between(1.year.ago, Time.now)
+  Membership.create(
+    person: participant,
+    organisation: Organisation.find(participant.id % 10 + 1),
+    member_start: member_start,
+    member_end: member_start + rand(10..50).weeks
   )
 end
 
