@@ -41,9 +41,7 @@ gem 'rails-erd'
 gem 'paperclip'
 
 # Theming etc
-gem 'bootstrap'
-gem 'formtastic'
-gem 'cocoon'
+gem 'simple_form'
 
 # Listing and filtering
 gem 'smart_listing'

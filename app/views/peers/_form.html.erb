@@ -1,42 +1,15 @@
-<%= form_for(peer) do |f| %>
-  <% if peer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(peer.errors.count, "error") %> prohibited this peer from being saved:</h2>
+<%= simple_form_for(@peer) do |f| %>
+  <%= f.error_notification %>
 
-      <ul>
-      <% peer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :participant_id %>
-    <%= f.text_field :participant_id %>
+  <div class="form-inputs">
+    <%= f.association :participant %>
+    <%= f.association :mentor %>
+    <%= f.input :peer_start%>
+    <%= f.input :peer_end %>
+    <%= f.input :notes, input_html: {rows: 10} %>
   </div>
 
-  <div class="field">
-    <%= f.label :mentor_id %>
-    <%= f.text_field :mentor_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :peer_start %>
-    <%= f.date_select :peer_start %>
-  </div>
-
-  <div class="field">
-    <%= f.label :peer_end %>
-    <%= f.date_select :peer_end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
 <% end %>

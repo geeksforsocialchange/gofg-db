@@ -49,16 +49,11 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
-    autoprefixer-rails (6.7.7)
-      execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
-    bootstrap (4.0.0.alpha6)
-      autoprefixer-rails (>= 6.0.3)
-      sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.13.0)
@@ -76,7 +71,6 @@ GEM
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -100,8 +94,6 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.18)
     formatador (0.2.5)
-    formtastic (3.1.5)
-      actionpack (>= 3.2.13)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     guard (2.14.1)
@@ -217,6 +209,9 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_form (3.4.0)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     simplecov (0.14.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -266,15 +261,12 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
-  bootstrap
   byebug
   capybara
   clearance
-  cocoon
   database_cleaner
   factory_girl_rails
   faker!
-  formtastic
   guard
   guard-minitest
   jbuilder (~> 2.5)
@@ -289,6 +281,7 @@ DEPENDENCIES
   rails-erd
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)
+  simple_form
   simplecov
   smart_listing
   spring
