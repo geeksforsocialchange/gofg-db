@@ -1,5 +1,8 @@
 class Organisation < ApplicationRecord
 
+  has_many :memberships
+  has_many :people, through: :memberships
+  
   enum activity: {
     "Boxing": 0,
     "Football": 1,

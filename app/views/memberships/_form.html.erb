@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :person %>
+    <%= f.association :person, collection: Participant.all %>
     <%= f.association :organisation %>
     <%= f.input :member_start %>
     <%= f.input :member_end %>

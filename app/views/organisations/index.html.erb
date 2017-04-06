@@ -17,7 +17,7 @@
   <tbody>
     <% @organisations.each do |organisation| %>
       <tr>
-        <td><%= organisation.name %></td>
+        <td><%= link_to organisation.name, organisation %></td>
         <td><%= organisation.activity %></td>
         <td><%= organisation.email %></td>
         <td><%= organisation.tel %></td>

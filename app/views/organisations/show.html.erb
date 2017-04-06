@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @organisation.name %>
-</p>
+<h1><%= @organisation.name %></h1>
+
+<%= link_to 'Edit', edit_organisation_path(@organisation) %> |
+<%= link_to 'Back', organisations_path %>
 
 <p>
   <strong>Activity:</strong>
@@ -45,5 +45,9 @@
   <%= @organisation.notes %>
 </p>
 
-<%= link_to 'Edit', edit_organisation_path(@organisation) %> |
-<%= link_to 'Back', organisations_path %>
+<h2>Members</h2>
+<ul>
+  <% @organisation.people.each do |member| %>
+    <li><%= link_to member, participant_path(member) %></li>
+  <% end %>
+</ul>
