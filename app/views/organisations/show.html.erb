@@ -2,8 +2,10 @@
 
 <h1><%= @organisation.name %></h1>
 
-<%= link_to 'Edit', edit_organisation_path(@organisation) %> |
-<%= link_to 'Back', organisations_path %>
+<p>
+  <%= link_to 'Edit', edit_organisation_path(@organisation), class: "btn btn-primary" %>
+  <%= link_to 'Back', organisations_path, class: "btn btn-secondary" %>
+</p>
 
 <p>
   <strong>Activity:</strong>

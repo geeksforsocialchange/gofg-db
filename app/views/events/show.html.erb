@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @event.name %></h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @event.name %>
+  <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-primary" %>
+  <%= link_to 'Back', events_path, class: "btn btn-secondary" %>
 </p>
 
 <p>
@@ -26,11 +26,6 @@
 </p>
 
 <p>
-  <strong>Notes:</strong>
-  <%= @event.notes %>
-</p>
-
-<p>
   <strong>Other attendee count:</strong>
   <%= @event.other_attendee_count %>
 </p>
@@ -40,5 +35,7 @@
   <%= @event.type %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<h2>Notes</h2>
+<p>
+  <%= @event.notes %>
+</p>
