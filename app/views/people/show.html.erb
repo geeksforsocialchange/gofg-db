@@ -1,4 +1,4 @@
-<h1><%= @person.first_name %> <%= @person.last_name %></h1>
+<h1><%= @person.first_name %> <%= @person.last_name %> <small><%= @person.type %></small></h1>
 
 <p>
   <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-primary" %>
@@ -35,7 +35,12 @@
   <%= @person.dob %>
 </p>
 
+<h2>Notes</h2>
 <p>
-  <strong>Notes:</strong>
   <%= @person.notes %>
 </p>
+
+<% if @person.type == "Coach" %>
+  <h2>Activities Coached</h2>
+  
+<% end %>

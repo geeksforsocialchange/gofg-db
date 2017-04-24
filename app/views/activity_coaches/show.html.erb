@@ -1,0 +1,14 @@
+<h1>Activity Coach</h1>
+
+<%= link_to 'Edit', edit_activity_coach_path(@activity_coach), class: "btn btn-primary" %>
+<%= link_to 'Back', activity_coaches_path, class: "btn btn-secondary" %>
+
+<p>
+  <strong>Activity:</strong>
+  <%= link_to @activity_coach.event, event_path(@activity_coach.event) %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= link_to Coach.find(@activity_coach.person_id), person_path(@activity_coach.person_id) %>
+</p>

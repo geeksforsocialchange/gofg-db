@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406152911) do
+ActiveRecord::Schema.define(version: 20170424113653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activity_coaches", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_activity_coaches_on_event_id", using: :btree
+    t.index ["person_id"], name: "index_activity_coaches_on_person_id", using: :btree
+  end
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "person_id"
@@ -101,6 +110,8 @@ ActiveRecord::Schema.define(version: 20170406152911) do
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end
 
+  add_foreign_key "activity_coaches", "events"
+  add_foreign_key "activity_coaches", "people"
   add_foreign_key "attendances", "events"
   add_foreign_key "attendances", "people"
   add_foreign_key "memberships", "organisations"

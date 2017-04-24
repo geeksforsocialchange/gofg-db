@@ -1,0 +1,2 @@
+module ActivityCoachesHelper
+end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :activity_coaches
   resources :attendances
   resources :memberships
   # People

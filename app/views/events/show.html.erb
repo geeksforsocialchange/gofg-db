@@ -39,3 +39,12 @@
 <p>
   <%= @event.notes %>
 </p>
+
+<% if @event.type = "Activity" %>
+  <h2>Coaches</h2>
+  <% if @event.coaches %>
+  <% end %>
+  <p>
+    <%= link_to "Add a coach", new_activity_coach_path({event_id: @event.id}) %>
+  </p>
+<% end %>
