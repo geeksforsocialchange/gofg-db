@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :activity_coach do
     event
-    person
+    coach
   end
 end

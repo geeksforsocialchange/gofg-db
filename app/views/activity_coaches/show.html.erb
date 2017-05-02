@@ -10,5 +10,5 @@
 
 <p>
   <strong>Person:</strong>
-  <%= link_to Coach.find(@activity_coach.person_id), person_path(@activity_coach.person_id) %>
+  <%= link_to @activity_coach.coach, person_path(@activity_coach.coach) %>
 </p>

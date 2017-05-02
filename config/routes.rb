@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :activity_coaches
   resources :attendances
   resources :memberships
@@ -18,4 +19,7 @@ Rails.application.routes.draw do
   resources :fieldworks
   resources :meetings
   resources :activities
+
+  # Home page
+  root 'home#index'
 end

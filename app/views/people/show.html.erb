@@ -42,5 +42,9 @@
 
 <% if @person.type == "Coach" %>
   <h2>Activities Coached</h2>
-  
+  <ul>
+    <% @person.events.each do |event| %>
+      <li><%= event %></li>
+    <% end %>
+  </ul>
 <% end %>

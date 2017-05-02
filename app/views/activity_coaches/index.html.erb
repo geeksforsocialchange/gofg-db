@@ -2,11 +2,11 @@
 
 <%= link_to 'New Activity Coach', new_activity_coach_path, class: "btn btn-primary" %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Event</th>
-      <th>Person</th>
+      <th>Coach</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +14,8 @@
   <tbody>
     <% @activity_coaches.each do |activity_coach| %>
       <tr>
-        <td><%= activity_coach.event %></td>
-        <td><%= activity_coach.person %></td>
+        <td><%= link_to activity_coach.event, event_path(activity_coach.event) %></td>
+        <td><%= link_to activity_coach.coach, coach_path(activity_coach.coach) %></td>
         <td><%= link_to 'Show', activity_coach %></td>
         <td><%= link_to 'Edit', edit_activity_coach_path(activity_coach) %></td>
         <td><%= link_to 'Destroy', activity_coach, method: :delete, data: { confirm: 'Are you sure?' } %></td>

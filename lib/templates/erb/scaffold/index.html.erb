@@ -2,7 +2,7 @@
 
 <%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path, class: "btn btn-primary" %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
