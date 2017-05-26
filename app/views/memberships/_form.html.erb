@@ -1,15 +1,22 @@
-<%= simple_form_for(@membership) do |f| %>
-  <%= f.error_notification %>
+<div class="row">
+  <div class="col-sm-5 col-md-4">
 
-  <div class="form-inputs">
-    <%= f.association :person, collection: Participant.all %>
-    <%= f.association :organisation %>
-    <%= f.input :member_start %>
-    <%= f.input :member_end %>
-    <%= f.input :notes %>
-  </div>
+    <%= simple_form_for(@membership) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+      <div class="form-inputs">
+        <%= f.association :person, collection: Participant.all %>
+        <%= f.association :organisation %>
+        <%= f.input :member_start %>
+        <%= f.input :member_end %>
+        <%= f.input :notes %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn-primary' %>
+        <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
+</div>

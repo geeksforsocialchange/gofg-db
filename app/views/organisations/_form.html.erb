@@ -1,62 +1,25 @@
-<%= form_for(organisation) do |f| %>
-  <% if organisation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+<div class="row">
+  <div class="col-sm-5 col-md-4">
+    <%= simple_form_for(@organisation) do |f| %>
 
-      <ul>
-      <% organisation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <%= f.error_notification %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      <div class="form-inputs">
+        <%= f.input :name %>
+        <%= f.input :activity, collection: Organisation.activities %>
+        <%= f.input :email %>
+        <%= f.input :tel %>
+        <%= f.input :address_1 %>
+        <%= f.input :address_2 %>
+        <%= f.input :city %>
+        <%= f.input :postcode %>
+        <%= f.input :notes, input_html: {rows: 10} %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn-primary' %>
+        <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :activity %>
-    <%= f.number_field :activity %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :tel %>
-    <%= f.text_field :tel %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address_1 %>
-    <%= f.text_field :address_1 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address_2 %>
-    <%= f.text_field :address_2 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= f.label :postcode %>
-    <%= f.text_field :postcode %>
-  </div>
-
-  <div class="field">
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
