@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = smart_listing_create(:people, scope, partial: 'people/listing', default_sort: {last_name: :asc, first_name: :asc})
   end
 
   # GET /people/1
@@ -65,6 +65,10 @@ class PeopleController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
+    end
+
+    def scope
+      params[:filter].blank? ? Person.all : Person.like(params[:filter])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
