@@ -11,7 +11,10 @@
         <%= f.input :location %>
         <%= f.input :notes, input_html: {rows: 10} %>
         <%= f.input :other_attendee_count, as: :integer %>
-        <%= f.input :type %>
+
+        <%- if @event.new_record? %>
+          <%= f.input :type, collection: Event.types, prompt: 'Select a type', selected: params[:type] || @event.type %>
+        <% end %>
       </div>
 
       <div class="form-actions">

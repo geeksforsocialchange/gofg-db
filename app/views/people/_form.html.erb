@@ -9,6 +9,11 @@
         <%= f.input :nicknames %>
         <%= f.input :tel, label: 'Telephone' %>
         <%= f.input :email %>
+
+        <%- if @person.new_record? %>
+          <%= f.input :type, collection: Person.types, prompt: 'Select a type', selected: params[:type] || @person.type %>
+        <% end %>
+
         <%= f.input :twitter, label: 'Twitter handle' %>
         <%= f.input :is_accreditor, as: :boolean %>
         <%= f.input :dob, as: :date %>

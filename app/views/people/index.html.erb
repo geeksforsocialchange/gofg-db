@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>People</h1>
-
-<%= link_to 'New Person', new_person_path, class: "btn btn-primary" %>
+<h1><%= t("#{controller_name}.page_title") %></h1>
+<%= link_to t("#{controller_name}.new_button"), path_for_new_person, class: "btn btn-primary" %>
 
 <table class="table">
   <thead>

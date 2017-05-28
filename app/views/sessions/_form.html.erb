@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-sm-3">
-    <%= simple_form_for :session, url: session_path do |f| %>
+    <%= simple_form_for :session, url: session_path do |form| %>
       <div class="form-inputs">
-        <%= f.input :email, as: :email %>
-        <%= f.input :password, as: :password %>
+        <%= form.input :email, as: :email %>
+        <%= form.input :password, as: :password %>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, class: 'btn-primary' %>
+        <%= form.button :submit, class: 'btn-primary' %>
       </div>
 
       <br/>

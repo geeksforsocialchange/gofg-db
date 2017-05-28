@@ -7,6 +7,11 @@ class Event < ApplicationRecord
   has_many :coaches, through: :activity_coaches
 
   validates :other_attendee_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :type, presence: true
+
+  def self.types
+    subclasses.map(&:to_s)
+  end
 
   def duration
     event_end ? (event_end - event_start) / 60 / 60 : 0

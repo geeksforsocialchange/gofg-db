@@ -7,7 +7,7 @@ class CreatePeople < ActiveRecord::Migration[5.0]
       t.string :tel
       t.string :email
       t.string :twitter
-      t.boolean :is_accreditor
+      t.boolean :is_accreditor, null: false, default: false
       t.date :dob
       t.text :notes
 
