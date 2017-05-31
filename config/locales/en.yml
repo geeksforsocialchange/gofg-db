@@ -21,3 +21,27 @@
 
 en:
   hello: "Hello world"
+  people:
+    page_title: "People"
+    new_button: "New Person"
+  mentors:
+    page_title: "Mentors"
+    new_button: "New Mentor"
+  participants:
+    page_title: "Participants"
+    new_button: "New Participant"
+  coaches:
+    page_title: "Coaches"
+    new_button: "New Coach"
+  events:
+    page_title: "Events"
+    new_button: "New Event"
+  activities:
+    page_title: "Activities"
+    new_button: "New Activity"
+  fieldworks:
+    page_title: "Fieldwork"
+    new_button: "New Fieldwork"
+  meetings:
+    page_title: "Meeting"
+    new_button: "New Meeting"

@@ -91,11 +91,11 @@ ActiveRecord::Schema.define(version: 20170424113653) do
     t.string   "tel"
     t.string   "email"
     t.string   "twitter"
-    t.boolean  "is_accreditor"
+    t.boolean  "is_accreditor", default: false, null: false
     t.date     "dob"
     t.text     "notes"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "type"
   end
 

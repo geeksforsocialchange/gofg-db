@@ -1,57 +1,26 @@
-<%= form_for(event) do |f| %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<div class="row">
+  <div class="col-sm-5 col-md-4">
+    <%= simple_form_for(@event) do |f| %>
+      <%= f.error_notification %>
 
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="form-inputs">
+        <%= f.input :name %>
+        <%= f.input :event_start, as: :datetime %>
+        <%= f.input :event_end, as: :datetime %>
+        <%= f.input :event_type %>
+        <%= f.input :location %>
+        <%= f.input :notes, input_html: {rows: 10} %>
+        <%= f.input :other_attendee_count, as: :integer %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+        <%- if @event.new_record? %>
+          <%= f.input :type, collection: Event.types, prompt: 'Select a type', selected: params[:type] || @event.type %>
+        <% end %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn-primary' %>
+        <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :event_start %>
-    <%= f.datetime_select :event_start %>
-  </div>
-
-  <div class="field">
-    <%= f.label :event_end %>
-    <%= f.datetime_select :event_end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :event_type %>
-    <%= f.text_field :event_type %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
-
-  <div class="field">
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= f.label :other_attendee_count %>
-    <%= f.number_field :other_attendee_count %>
-  </div>
-
-  <div class="field">
-    <%= f.label :type %>
-    <%= f.text_field :type %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

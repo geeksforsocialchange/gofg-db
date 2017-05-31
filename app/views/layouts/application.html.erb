@@ -14,17 +14,23 @@
   <body>
 
     <header>
-      <div id="flash">
-        <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-        <% end %>
-      </div>
-
       <%= render 'layouts/navigation' %>
     </header>
 
     <main>
       <div class="container">
+        <%- if flash.notice %>
+          <div class="alert alert-success alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%= flash.notice %>
+          </div>
+        <%- elsif flash.alert %>
+          <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%= flash.alert %>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
     </main>
