@@ -1,36 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Organisations</h1>
-
-
-<%= link_to 'New Organisation', new_organisation_path, class: "btn btn-primary" %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Activity</th>
-      <th>Email</th>
-      <th>Tel</th>
-      <th>Address</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organisations.each do |organisation| %>
-      <tr>
-        <td><%= link_to organisation.name, organisation %></td>
-        <td><%= organisation.activity %></td>
-        <td><%= organisation.email %></td>
-        <td><%= organisation.tel %></td>
-        <td><%= organisation.address %></td>
-        <td><%= link_to 'Show', organisation %></td>
-        <td><%= link_to 'Edit', edit_organisation_path(organisation) %></td>
-        <td><%= link_to 'Destroy', organisation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row organisations">
+  <div class="col-sm-2">
+    <h1>Organisations</h1>
+  </div>
+  <div class="col-sm-3 pull-right">
+    <%= smart_listing_controls_for(:organisations) do %>
+      <div class="filter input-append form-group">
+        <%= text_field_tag :filter, '', class: "search form-control", placeholder: "Search by name or email", autocomplete: "off" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="col-sm-2 pull-right">
+    <%= link_to "New Organisation", new_organisation_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<%= smart_listing_render(:organisations) %>
 
 <br>
+
