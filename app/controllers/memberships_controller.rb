@@ -4,7 +4,9 @@ class MembershipsController < ApplicationController
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.all
+    scope = params[:filter].blank? ? Membership.all : Membership.by_organisation(params[:filter])
+    @memberships = smart_listing_create(:memberships, scope, partial: 'memberships/listing')
+    @organisations = Organisation.order(:name)
   end
 
   # GET /memberships/1

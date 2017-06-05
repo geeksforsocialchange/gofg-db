@@ -1,0 +1,32 @@
+<%- unless smart_listing.empty? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Participant</th>
+        <th>Mentor</th>
+        <th>Peer start</th>
+        <th>Peer end</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% smart_listing.collection.each do |peer| %>
+        <tr>
+          <td><%= link_to peer.participant, participant_path(peer.participant) %></td>
+          <td><%= link_to peer.mentor, mentor_path(peer.mentor) %></td>
+          <td><%= peer.peer_start %></td>
+          <td><%= peer.peer_end %></td>
+          <td><%= link_to 'Show', peer %></td>
+          <td><%= link_to 'Edit', edit_peer_path(peer) %></td>
+          <td><%= link_to 'Destroy', peer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= smart_listing.paginate %>
+  <%= smart_listing.pagination_per_page_links %>
+<% else %>
+  <p class="warning">No records found</p>
+<% end %>

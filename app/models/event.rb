@@ -9,6 +9,8 @@ class Event < ApplicationRecord
   validates :other_attendee_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :type, presence: true
 
+  scope :like, ->(filter) { where("name ILIKE :search OR location ILIKE :search", search: "%#{filter}%") }
+
   def self.types
     subclasses.map(&:to_s)
   end

@@ -4,7 +4,9 @@ class PeersController < ApplicationController
   # GET /peers
   # GET /peers.json
   def index
-    @peers = Peer.all
+    scope = params[:filter].blank? ? Peer.all : Peer.by_mentor(params[:filter])
+    @peers = smart_listing_create(:peers, scope, partial: 'peers/listing')
+    @mentors = Mentor.order(:last_name)
   end
 
   # GET /peers/1

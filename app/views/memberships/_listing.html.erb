@@ -1,0 +1,35 @@
+<%- unless smart_listing.empty? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Participant</th>
+        <th>Organisation</th>
+        <th>Member start</th>
+        <th>Member end</th>
+        <th>Notes</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% smart_listing.collection.each do |membership| %>
+        <tr>
+          <td><%= link_to membership.person, person_path(membership.person) %></td>
+          <td><%= link_to membership.organisation, organisation_path(membership.organisation) %></td>
+          <td><%= membership.member_start %></td>
+          <td><%= membership.member_end %></td>
+          <td><%= membership.notes %></td>
+          <td><%= link_to 'Show', membership %></td>
+          <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
+          <td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= smart_listing.paginate %>
+  <%= smart_listing.pagination_per_page_links %>
+
+<% else %>
+  <p class="warning">No records found</p>
+<% end %>

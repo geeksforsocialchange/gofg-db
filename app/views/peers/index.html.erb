@@ -1,33 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Peers</h1>
-
-<%= link_to 'New Peer', new_peer_path, class: "btn btn-primary" %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Participant</th>
-      <th>Mentor</th>
-      <th>Peer start</th>
-      <th>Peer end</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @peers.each do |peer| %>
-      <tr>
-        <td><%= link_to peer.participant, participant_path(peer.participant) %></td>
-        <td><%= link_to peer.mentor, mentor_path(peer.mentor) %></td>
-        <td><%= peer.peer_start %></td>
-        <td><%= peer.peer_end %></td>
-        <td><%= link_to 'Show', peer %></td>
-        <td><%= link_to 'Edit', edit_peer_path(peer) %></td>
-        <td><%= link_to 'Destroy', peer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row peers">
+  <div class="col-sm-2">
+    <h1>Peers</h1>
+  </div>
+  <div class="col-sm-3 pull-right">
+    <%= smart_listing_controls_for(:peers) do %>
+      <div class="filter input-append form-group">
+        <%= select_tag :filter, options_from_collection_for_select(@mentors, :id, :to_s), class: "form-control", prompt: '--- Select a mentor ---' %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="col-sm-1 pull-right">
+    <%= link_to "New Peer", new_peer_path, class: "btn btn-primary" %>
+  </div>
+</div>
 
-<br>
+<%= smart_listing_render(:peers) %>
+
+

@@ -4,7 +4,9 @@ class AttendancesController < ApplicationController
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.all
+    scope = params[:filter].blank? ? Attendance.all : Attendance.by_event(params[:filter])
+    @attendances = smart_listing_create(:attendances, scope, partial: 'attendances/listing')
+    @events = Event.order(:name)
   end
 
   # GET /attendances/1

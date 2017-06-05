@@ -5,7 +5,8 @@ class Person < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, :type
 
-  default_scope { order(last_name: :asc, first_name: :asc) }
+  scope :like, ->(filter) { where("first_name ILIKE :search OR last_name ILIKE :search OR email ILIKE :search", search: "%#{filter}%") }
+  #default_scope { order(last_name: :asc, first_name: :asc) }
 
   def to_s
     last_name + ", " + first_name

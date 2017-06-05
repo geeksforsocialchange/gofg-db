@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = smart_listing_create(:events, scope, partial: 'events/listing', default_sort: {name: :asc})
   end
 
   # GET /events/1
@@ -65,6 +65,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def scope
+      params[:filter].blank? ? Event.all : Event.like(params[:filter])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

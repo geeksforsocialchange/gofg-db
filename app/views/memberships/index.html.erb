@@ -1,35 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Memberships</h1>
-
-<%= link_to 'New Membership', new_membership_path, class: "btn btn-primary" %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Participant</th>
-      <th>Organisation</th>
-      <th>Member start</th>
-      <th>Member end</th>
-      <th>Notes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @memberships.each do |membership| %>
-      <tr>
-        <td><%= link_to membership.person, person_path(membership.person) %></td>
-        <td><%= link_to membership.organisation, organisation_path(membership.organisation) %></td>
-        <td><%= membership.member_start %></td>
-        <td><%= membership.member_end %></td>
-        <td><%= membership.notes %></td>
-        <td><%= link_to 'Show', membership %></td>
-        <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
-        <td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row memberships">
+  <div class="col-sm-2">
+    <h1>Memberships</h1>
+  </div>
+  <div class="col-sm-3 pull-right">
+    <%= smart_listing_controls_for(:memberships) do %>
+      <div class="filter input-append form-group">
+        <%= select_tag :filter, options_from_collection_for_select(@organisations, :id, :name), class: 'form-control', prompt: '--- Select an organisation ---' %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="col-sm-2 pull-right">
+    <%= link_to "New Membership", new_membership_path, class: "btn btn-primary" %>
+  </div>
+</div>
+
+<%= smart_listing_render(:memberships) %>
 
 <br>

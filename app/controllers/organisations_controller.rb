@@ -4,7 +4,8 @@ class OrganisationsController < ApplicationController
   # GET /organisations
   # GET /organisations.json
   def index
-    @organisations = Organisation.all
+    scope = params[:filter].blank? ? Organisation.all : Organisation.like(params[:filter])
+    @organisations = smart_listing_create(:organisations, scope, partial: 'organisations/listing', default_sort: {name: :asc})
   end
 
   # GET /organisations/1
