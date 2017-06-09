@@ -1,23 +1,22 @@
 class Upload < ApplicationRecord
   belongs_to :document
 
-  enum :subtype, [:audio, :transcript, :photo, :file]
+  enum subtype: [:audio, :transcript, :photo, :output]
 
   has_attached_file :attachment, styles: { medium: '400x400>', thumb: '100x100>'}
 
-  before_post_process :skip_for_audio
+  before_post_process :skip_for_non_photos
 
   validates_attachment_presence :attachment
 
   validates_attachment_file_name :attachment, matches: [/mp3\z/, /ogg\z/, /wav\z/, /wma\z/, /webm\z/], if: :audio?
   validates_attachment_content_type :attachment, content_type: /\Aimage/, if: :photo?
 
-  def skip_for_audio
-    #return false if audio file to stop post process
-    !audio_content_types.any? { |format| attachment_content_type.match(format) }
+  scope :by_subtype, ->(subtype) { where(subtype: subtype) }
+
+  def skip_for_non_photos
+    #return false if not photo to stop post process
+    !!attachment_content_type.match(/\Aimage/)
   end
 
-  def audio_content_types
-    %w(mp3 ogg wav wma webm)
-  end
 end

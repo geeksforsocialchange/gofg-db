@@ -1,0 +1,40 @@
+<div class="row documents">
+  <div class="col-sm-2">
+    <h1><%= t("#{controller_name}.page_title") %></h1>
+  </div>
+  <div class="col-sm-3 pull-right">
+    <%= smart_listing_controls_for(:documents) do %>
+      <div class="filter input-append form-group">
+        <%= text_field_tag :filter, '', class: "search form-control", placeholder: "Search by name or location", autocomplete: "off" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-2 pull-right">
+    <%= link_to t("#{controller_name}.new_button"), "#", class: "btn btn-primary", "data-toggle" => "modal", "data-target" => "#newDocumentModal" %>
+  </div>
+</div>
+
+<%= smart_listing_render(:documents) %>
+
+<br>
+
+<div class="modal fade" id="newDocumentModal" tabindex="-1" role="dialog" aria-labelledby="newDocument">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= simple_form_for(@document) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="newDocument">Start a new document</h4>
+        </div>
+        <div class="modal-body">
+          <%= f.input :name %>
+          <%= f.input :type, collection: Document.types, prompt: 'Select a type' %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.button :submit, "Continue",  class: "btn btn-primary"%>
+       </div>
+     <% end %>
+   </div>
+ </div>
+</div>

@@ -41,8 +41,7 @@ ActiveRecord::Schema.define(version: 20170601133856) do
     t.string   "location"
     t.string   "type"
     t.text     "notes"
-    t.string   "description"
-    t.integer  "user_id"
+    t.text     "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

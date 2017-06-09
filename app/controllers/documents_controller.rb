@@ -5,6 +5,7 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = smart_listing_create(:documents, scope, partial: 'documents/listing', default_sort: {name: :asc})
+    @document = Document.new
   end
 
   # GET /documents/1
@@ -28,7 +29,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -73,6 +74,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:name, :document_start, :document_end, :document_type, :location, :notes, :other_attendee_count, :type)
+      params.require(:document).permit(:name, :researcher, :conducted_at, :location, :notes, :description, :type)
     end
 end

@@ -7,8 +7,7 @@ class CreateDocuments < ActiveRecord::Migration[5.0]
       t.string :location
       t.string :type
       t.text :notes
-      t.string :description
-      t.integer :user_id
+      t.text :description
 
       t.timestamps
     end

@@ -45,3 +45,6 @@ en:
   meetings:
     page_title: "Meeting"
     new_button: "New Meeting"
+  documents:
+    page_title: "Document"
+    new_button: "New Document"

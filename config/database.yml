@@ -24,7 +24,7 @@ default: &default
 development:
   <<: *default
   database: gofg-db_development
-  username: kim
+  #username: kim
   # password:
   # host: db
 
@@ -61,7 +61,7 @@ development:
 test:
   <<: *default
   database: gofg-db_test
-  username: kim
+  #username: kim
   # password:
   # host: test
 
