@@ -24,14 +24,14 @@
 
 <%- if @document.is_interview? %>
   <h4>Transcripts</h4>
-  <%= list_uploads('transcript') %>
+  <%= list_uploads('transcript', true) %>
 
   <h4>Audio</h4>
-  <%= list_uploads('audio') %>
+  <%= list_uploads('audio', true) %>
 <% elsif @document.is_gallery? %>
   <h4>Photos</h4>
-  <%= list_uploads('photo') %>
+  <%= list_uploads('photo', true) %>
 <% else %>
   <h4>Files</h4>
-  <%= list_uploads('file') %>
+  <%= list_uploads('file', true) %>
 <% end %>

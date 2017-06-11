@@ -4,8 +4,8 @@ module DocumentsHelper
     end
   end
 
-  def list_uploads(type)
+  def list_uploads(type, show_download=false)
     uploads = @document.uploads.by_subtype(type)
-    render 'uploads/list', uploads: uploads, document: @document, type: type
+    render 'uploads/list', uploads: uploads, document: @document, type: type, show_download: show_download
   end
 end

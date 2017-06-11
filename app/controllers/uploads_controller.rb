@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
-  before_action :set_upload, only: [:show, :edit, :update, :destroy]
+  before_action :set_upload, only: [:show, :edit, :update, :destroy, :download]
   before_action :set_document, only: [:create, :destroy]
 
   # GET /uploads/1
@@ -42,6 +42,10 @@ class UploadsController < ApplicationController
   def destroy
     @upload.destroy
     render 'uploads/show', status: :ok, format: :js
+  end
+
+  def download
+    send_file @upload.attachment.path, filename: @upload.attachment_file_name, type: @upload.attachment_content_type
   end
 
   private

@@ -1,5 +1,13 @@
 <ul class='list-group' id="<%= "#{type}-uploads"%>">
   <%- uploads.each do |upload| %>
-    <li class='list-group-item'><%= upload.attachment_file_name %><span class="pull-right"><%= link_to 'Destroy', document_upload_path(document, upload) , method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></span></li>
+    <li class='list-group-item'>
+      <%= upload.attachment_file_name %>
+      <span class="pull-right">
+        <%- if show_download %>
+          <%= link_to 'Download', download_document_upload_url(document, upload) %>&nbsp;&nbsp;
+        <% end %>
+        <%= link_to 'Destroy', document_upload_path(document, upload) , method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+      </span>
+    </li>
   <% end %>
 </ul>

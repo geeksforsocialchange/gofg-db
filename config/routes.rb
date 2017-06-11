@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :activities
 
   resources :documents do
-    resources :uploads
+    resources :uploads do
+      get :download, on: :member
+    end
   end
   resources :interviews
   resources :galleries
