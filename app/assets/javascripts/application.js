@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap-sass-official
 //= require smart_listing
+//= require dropzone
 //= require_tree .

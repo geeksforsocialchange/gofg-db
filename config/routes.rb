@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   resources :meetings
   resources :activities
 
+  resources :documents do
+    resources :uploads
+  end
+  resources :interviews
+  resources :galleries
+  resources  :outputs
+
   # Home page
   root 'home#index'
 end

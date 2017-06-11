@@ -12,7 +12,7 @@ class Event < ApplicationRecord
   scope :like, ->(filter) { where("name ILIKE :search OR location ILIKE :search", search: "%#{filter}%") }
 
   def self.types
-    subclasses.map(&:to_s)
+    ['Activity', 'Fieldwork', 'Meeting']
   end
 
   def duration

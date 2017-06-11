@@ -1,0 +1,37 @@
+<h1><%= @document.name %> <small><%= @document.type %></small></h1>
+
+<p>
+  <%= link_to 'Edit', edit_document_path(@document), class: "btn btn-primary" %>
+  <%= link_to 'Back', documents_path, class: "btn btn-secondary" %>
+</p>
+
+<p>
+  <strong>Researcher:</strong>
+  <%= @document.researcher %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @document.location %>
+</p>
+
+<p>
+  <strong>Conducted at:</strong>
+  <%= @document.conducted_at %>
+</p>
+
+<br/>
+
+<%- if @document.is_interview? %>
+  <h4>Transcripts</h4>
+  <%= list_uploads('transcript') %>
+
+  <h4>Audio</h4>
+  <%= list_uploads('audio') %>
+<% elsif @document.is_gallery? %>
+  <h4>Photos</h4>
+  <%= list_uploads('photo') %>
+<% else %>
+  <h4>Files</h4>
+  <%= list_uploads('file') %>
+<% end %>
