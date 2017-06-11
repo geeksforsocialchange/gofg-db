@@ -13,7 +13,7 @@ class Document < ApplicationRecord
   scope :like, ->(filter) { joins(:uploads).where("name ILIKE :search OR
                                                   researcher ILIKE :search OR
                                                   uploads.attachment_file_name ILIKE :search",
-                                                  search: "%#{filter}%") }
+                                                  search: "%#{filter}%").uniq }
 
   def self.types
     [INTERVIEW, GALLERY, OUTPUT]

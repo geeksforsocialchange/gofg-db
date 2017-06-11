@@ -1,7 +1,7 @@
 class Upload < ApplicationRecord
   belongs_to :document
 
-  enum subtype: [:audio, :transcript, :photo, :output]
+  enum subtype: [:audio, :transcript, :photo, :file]
 
   has_attached_file :attachment, styles: { medium: '400x400>', thumb: '100x100>'}
 

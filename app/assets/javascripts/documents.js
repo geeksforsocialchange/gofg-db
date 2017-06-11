@@ -56,12 +56,31 @@ Dropzone.options.audioUpload = {
   }
 };
 
-Dropzone.options.outputUpload = {
+Dropzone.options.fileUpload = {
   paramName: "upload[attachment]",
-  params: { "upload[subtype]": 'output' },
+  params: { "upload[subtype]": 'file' },
   init: function() {
     this.on("success", function(file, response) {
       uploadSuccess(response)
     });
   }
 };
+
+$(document).ready(function() {
+  $('#new-document-submit').on('click', function(e) {
+    e.preventDefault();
+
+    $.post($("#new_document").attr('action'), $("#new_document").serialize())
+      .done(function(data) {
+        window.location.href = data.redirect_url
+      })
+      .fail(function(data) {
+        response = $.parseJSON(data.responseText)
+        $.each(response, function(key, value) {
+          $className = $(".document_" + key)
+          $className.addClass('has-error')
+          $className.append("<span class=\"help-block\">" + value[0] + "</span>")
+        })
+      });
+  })
+})

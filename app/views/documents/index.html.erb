@@ -5,7 +5,7 @@
   <div class="col-sm-3 pull-right">
     <%= smart_listing_controls_for(:documents) do %>
       <div class="filter input-append form-group">
-        <%= text_field_tag :filter, '', class: "search form-control", placeholder: "Search by name or location", autocomplete: "off" %>
+        <%= text_field_tag :filter, '', class: "search form-control", placeholder: "Search by name, researcher or uploads", autocomplete: "off" %>
       </div>
     <% end %>
   </div>
@@ -21,18 +21,18 @@
 <div class="modal fade" id="newDocumentModal" tabindex="-1" role="dialog" aria-labelledby="newDocument">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <%= simple_form_for(@document) do |f| %>
+      <%= simple_form_for(@document, remote: true) do |f| %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="newDocument">Start a new document</h4>
         </div>
         <div class="modal-body">
           <%= f.input :name %>
-          <%= f.input :type, collection: Document.types, prompt: 'Select a type' %>
+          <%= f.input :type, collection: Document.types, include_blank: false, selected: (controller_name.singularize.capitalize unless controller_name == 'documents') %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= f.button :submit, "Continue",  class: "btn btn-primary"%>
+          <%= f.button :submit, "Continue",  class: "btn btn-primary", id: 'new-document-submit'%>
        </div>
      <% end %>
    </div>

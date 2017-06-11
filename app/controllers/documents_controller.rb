@@ -29,11 +29,12 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        format.json { render json: {document: @document, redirect_url: edit_document_path(@document)}, status: :created }
         format.html { redirect_to edit_document_path(@document), notice: 'Document was successfully created.' }
-        format.json { render :show, status: :created, location: @document }
       else
+        #format.js
+        format.json { render json: @document.errors.messages, status: :unprocessable_entity }
         format.html { render :new }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
   end

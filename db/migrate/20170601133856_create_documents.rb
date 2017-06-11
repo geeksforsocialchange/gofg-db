@@ -3,7 +3,7 @@ class CreateDocuments < ActiveRecord::Migration[5.0]
     create_table :documents do |t|
       t.string :name
       t.string :researcher
-      t.string :conducted_at
+      t.datetime :conducted_at
       t.string :location
       t.string :type
       t.text :notes

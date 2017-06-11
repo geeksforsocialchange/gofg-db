@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170601133856) do
   create_table "documents", force: :cascade do |t|
     t.string   "name"
     t.string   "researcher"
-    t.string   "conducted_at"
+    t.datetime "conducted_at"
     t.string   "location"
     t.string   "type"
     t.text     "notes"
