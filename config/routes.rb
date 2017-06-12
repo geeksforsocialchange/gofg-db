@@ -20,6 +20,15 @@ Rails.application.routes.draw do
   resources :meetings
   resources :activities
 
+  resources :documents do
+    resources :uploads do
+      get :download, on: :member
+    end
+  end
+  resources :interviews
+  resources :galleries
+  resources  :outputs
+
   # Home page
   root 'home#index'
 end

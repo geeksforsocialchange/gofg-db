@@ -46,6 +46,9 @@ gem 'simple_form'
 # Listing and filtering
 gem 'smart_listing'
 
+#drag and drop image upload
+gem 'dropzonejs-rails'
+
 # markdown?
 # geolocation?
 # mapping?

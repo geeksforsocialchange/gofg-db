@@ -1,0 +1,1 @@
+$("<%= "##{@upload.subtype}-uploads" %>").replaceWith("<%= j render 'uploads/list', uploads: @document.uploads.by_subtype(@upload.subtype), document: @document, type: @upload.subtype %>")

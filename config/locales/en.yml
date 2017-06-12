@@ -45,3 +45,15 @@ en:
   meetings:
     page_title: "Meeting"
     new_button: "New Meeting"
+  documents:
+    page_title: "Document"
+    new_button: "New Document"
+  interviews:
+    page_title: 'Interview'
+    new_button: 'New Interview'
+  galleries:
+    page_title: 'Gallery'
+    new_button: 'New Gallery'
+  outputs:
+    page_title: 'Output'
+    new_button: 'New Output'
