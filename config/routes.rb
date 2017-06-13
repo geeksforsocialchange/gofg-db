@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :activity_coaches
-  resources :attendances
+  #resources :attendances
   resources :memberships
   # People
   resources :people
@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   resources :organisations
 
   # Events
-  resources :events
+  resources :events do
+    resources :attendances
+  end
   resources :fieldworks
   resources :meetings
   resources :activities

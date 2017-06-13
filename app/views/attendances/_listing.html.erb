@@ -1,5 +1,3 @@
-<%- unless smart_listing.empty? %>
-
   <table class="table">
     <thead>
       <tr>
@@ -12,15 +10,12 @@
 
     <tbody>
       <% smart_listing.collection.each do |attendance| %>
-        <tr>
-          <td><%= attendance.person %></td>
-          <td><%= attendance.event %></td>
-          <td><%= attendance.notes %></td>
-          <td><%= link_to 'Show', attendance %></td>
-          <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-          <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <tr class="editable" data-id="<%= attendance.id%>">
+          <%= smart_listing.render partial: 'attendances/attendance', locals: { object: attendance } %>
         </tr>
       <% end %>
+
+      <%= smart_listing.item_new colspan: 6, link: new_event_attendance_path(@event) %>
     </tbody>
   </table>
 
@@ -28,6 +23,3 @@
   <%= smart_listing.paginate %>
   <%= smart_listing.pagination_per_page_links %>
 
-<% else %>
-  <p class="warning">No records found</p>
-<% end %>

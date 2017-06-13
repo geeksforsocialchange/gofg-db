@@ -1,0 +1,7 @@
+<td><%= object.person %></td>
+<td><%= object.event %></td>
+<td><%= object.notes %></td>
+<td class="actions">
+  <%= smart_listing_item_actions [ {name: :edit, url: edit_event_attendance_path(@event, object) },
+                                   { name: :destroy, url: event_attendance_path(@event, object), confirmation: "Are you sure you want to delete this?" }] %>
+</td>

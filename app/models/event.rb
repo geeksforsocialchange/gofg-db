@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   has_many :attendances
-  has_many :people, through: :addendances
+  has_many :people, through: :attendances
 
   # Only for coaches right now but putting it here just in case
   has_many :activity_coaches
@@ -10,6 +10,8 @@ class Event < ApplicationRecord
   validates :type, presence: true
 
   scope :like, ->(filter) { where("name ILIKE :search OR location ILIKE :search", search: "%#{filter}%") }
+
+  accepts_nested_attributes_for :attendances
 
   def self.types
     ['Activity', 'Fieldwork', 'Meeting']

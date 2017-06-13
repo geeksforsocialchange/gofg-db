@@ -1,10 +1,11 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, except: [:destroy]
+  before_action :set_people, except: [:destroy]
 
   # GET /attendances
   # GET /attendances.json
   def index
-    scope = params[:filter].blank? ? Attendance.all : Attendance.by_event(params[:filter])
     @attendances = smart_listing_create(:attendances, scope, partial: 'attendances/listing')
     @events = Event.order(:name)
   end
@@ -30,9 +31,11 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.save
+        format.js
         format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }
         format.json { render :show, status: :created, location: @attendance }
       else
+        format.js
         format.html { render :new }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
@@ -44,9 +47,11 @@ class AttendancesController < ApplicationController
   def update
     respond_to do |format|
       if @attendance.update(attendance_params)
+        format.js
         format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }
         format.json { render :show, status: :ok, location: @attendance }
       else
+        format.js
         format.html { render :edit }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
@@ -58,6 +63,7 @@ class AttendancesController < ApplicationController
   def destroy
     @attendance.destroy
     respond_to do |format|
+      format.js
       format.html { redirect_to attendances_url, notice: 'Attendance was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -67,6 +73,31 @@ class AttendancesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_attendance
       @attendance = Attendance.find(params[:id])
+    end
+
+    def set_event
+      @event = Event.find(params[:event_id]) if params[:event_id]
+    end
+
+    def set_people
+      @people = case @event.type
+                when 'Activity'
+                  Participant.order(:last_name)
+                when 'Fieldwork'
+                  Person.where.not(type: 'Participant').order(:last_name)
+                else
+                  Person.order(:last_name)
+                end
+    end
+
+    def scope
+      if params[:event_id].present?
+        Attendance.by_event(params[:event_id])
+      elsif params[:person_id].present?
+        Attendance.where(person_id: params[:person_id])
+      else
+        Attendance.all
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
