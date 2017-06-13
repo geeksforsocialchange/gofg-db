@@ -11,8 +11,6 @@ class Event < ApplicationRecord
 
   scope :like, ->(filter) { where("name ILIKE :search OR location ILIKE :search", search: "%#{filter}%") }
 
-  accepts_nested_attributes_for :attendances
-
   def self.types
     ['Activity', 'Fieldwork', 'Meeting']
   end

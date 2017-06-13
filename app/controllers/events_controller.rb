@@ -15,7 +15,6 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    @event.attendances.build
   end
 
   # GET /events/1/edit
@@ -32,7 +31,6 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        puts @event.errors.full_messages
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -75,6 +73,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :event_start, :event_end, :event_type, :location, :notes, :other_attendee_count, :type, attendances_attributes: {})
+      params.require(:event).permit(:name, :event_start, :event_end, :event_type, :location, :notes, :other_attendee_count, :type)
     end
 end
