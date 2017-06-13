@@ -1,17 +1,17 @@
 <div class="row attendances">
-  <div class="col-sm-2">
-    <h1>Attendances</h1>
+  <div class="col-sm-8">
+    <h1>Attendances <small>for <%= @event.name%></small></h1>
   </div>
-  <div class="col-sm-3 pull-right">
-    <%= smart_listing_controls_for(:attendances) do %>
+  <!--<div class="col-sm-3 pull-right">
+    <%#= smart_listing_controls_for(:attendances) do %>
       <div class="filter input-append form-group">
-        <%= select_tag :filter, options_from_collection_for_select(@events, :id, :name), class: 'form-control', prompt: '--- Select an event ---' %>
+        <%#= select_tag :event_id, options_from_collection_for_select(@events, :id, :name, params[:event_id]), class: 'form-control', prompt: '--- Select an event ---' %>
       </div>
-    <% end %>
+    <%# end %>
   </div>
   <div class="col-sm-2 pull-right">
-    <%= link_to "New Attendance", new_attendance_path, class: "btn btn-primary" %>
-  </div>
+    <%#= link_to "New Attendance", new_attendance_path, class: "btn btn-primary" %>
+  </div>-->
 </div>
 
 <%= smart_listing_render(:attendances) %>

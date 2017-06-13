@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   has_many :attendances
-  has_many :people, through: :addendances
+  has_many :people, through: :attendances
 
   # Only for coaches right now but putting it here just in case
   has_many :activity_coaches

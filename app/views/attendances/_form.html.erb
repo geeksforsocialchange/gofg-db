@@ -1,18 +1,22 @@
-<div class="row">
-  <div class="col-sm-5 col-md-4">
-    <%= simple_form_for(@attendance) do |f| %>
-      <%= f.error_notification %>
+<td colspan="6">
+  <%= simple_form_for([@event, @attendance],
+                      url: (@attendance.new_record? ? event_attendances_path(@event) : event_attendance_path(@event, @attendance)),
+                      remote: true) do |f| %>
+    <%= f.error_notification %>
 
-      <div class="form-inputs">
-        <%= f.association :person %>
+    <div class="form-inputs">
+      <%= f.association :person, collection: @people.group_by(&:type), as: :grouped_select, group_method: :last, selected: @attendance.person_id, prompt: 'Select an attendee'  %>
+      <%- if @event %>
+        <%= f.input :event_id, as: :hidden, input_html: { value: @event.id } %>
+      <% else %>
         <%= f.association :event %>
-        <%= f.input :notes %>
-      </div>
+      <% end %>
+      <%= f.input :notes %>
+    </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, class: 'btn-primary' %>
-        <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
-      </div>
-    <% end %>
-  </div>
-</div>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn-primary' %>
+      <%= link_to 'Cancel', event_attendances_path(@event), class: 'btn btn-default' %>
+    </div>
+  <% end %>
+</td>

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-5 col-md-4">
+  <div class="col-sm-12 col-md-5">
     <%= simple_form_for(@event) do |f| %>
       <%= f.error_notification %>
 
@@ -7,14 +7,13 @@
         <%= f.input :name %>
         <%= f.input :event_start, as: :datetime %>
         <%= f.input :event_end, as: :datetime %>
+        <%- if @event.new_record? %>
+          <%= f.input :type, collection: Event.types, prompt: 'Select a type', selected: params[:type] || @event.type %>
+        <% end %>
         <%= f.input :event_type %>
         <%= f.input :location %>
         <%= f.input :notes, input_html: {rows: 10} %>
         <%= f.input :other_attendee_count, as: :integer %>
-
-        <%- if @event.new_record? %>
-          <%= f.input :type, collection: Event.types, prompt: 'Select a type', selected: params[:type] || @event.type %>
-        <% end %>
       </div>
 
       <div class="form-actions">

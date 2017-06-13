@@ -49,6 +49,9 @@ gem 'smart_listing'
 #drag and drop image upload
 gem 'dropzonejs-rails'
 
+#multiselect
+gem 'select2-rails'
+
 # markdown?
 # geolocation?
 # mapping?

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sass-official
+//= require select2
 //= require smart_listing
 //= require dropzone
 //= require_tree .
