@@ -30,7 +30,22 @@
   <%= list_uploads('audio', true) %>
 <% elsif @document.is_gallery? %>
   <h4>Photos</h4>
-  <%= list_uploads('photo', true) %>
+  <div class="row gallery-photos">
+    <%- @document.uploads.each do |upload| %>
+      <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+          <%= link_to "#" do %>
+            <%= image_tag upload.attachment.url(:medium) %>
+          <% end %>
+          <div class="caption">
+            <p><%= upload.attachment_file_name %></p>
+            <%= link_to 'Download', download_document_upload_url(@document, upload) %>&nbsp;&nbsp;
+            <%= link_to 'Destroy', document_upload_path(@document, upload) , method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+          </div>
+        </div>
+     </div>
+    <% end %>
+  </div>
 <% else %>
   <h4>Files</h4>
   <%= list_uploads('file', true) %>
