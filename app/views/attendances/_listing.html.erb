@@ -1,25 +1,26 @@
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Person</th>
-        <th>Event</th>
-        <th>Notes</th>
-        <th colspan="3"></th>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Event</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% smart_listing.collection.each do |attendance| %>
+      <tr class="editable" data-id="<%= attendance.id%>">
+        <%= smart_listing.render partial: 'attendances/attendance', locals: { object: attendance } %>
       </tr>
-    </thead>
+    <% end %>
 
-    <tbody>
-      <% smart_listing.collection.each do |attendance| %>
-        <tr class="editable" data-id="<%= attendance.id%>">
-          <%= smart_listing.render partial: 'attendances/attendance', locals: { object: attendance } %>
-        </tr>
-      <% end %>
-
-      <%= smart_listing.item_new colspan: 6, link: new_event_attendance_path(@event) %>
-    </tbody>
-  </table>
+    <%= smart_listing.item_new colspan: 6, link: new_event_attendance_path(@event) %>
+  </tbody>
+</table>
 
 <br>
-  <%= smart_listing.paginate %>
-  <%= smart_listing.pagination_per_page_links %>
+
+<%= smart_listing.paginate %>
+<%= smart_listing.pagination_per_page_links %>
 

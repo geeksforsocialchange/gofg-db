@@ -3,3 +3,7 @@ $icon-font-path: "bootstrap-sass-official/assets/fonts/bootstrap/";
 .people, .events, .organisations, .peers, .memberships, .documents, .attendances {
   h1 { margin-top: 0; }
 }
+
+.navbar p.navbar-text {
+  margin-right: 15px;
+}

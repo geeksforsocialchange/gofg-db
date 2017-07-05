@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-12 col-md-5">
+    <%= simple_form_for(@user, url: complete_user_path(@user)) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :email, disabled: true %>
+        <%= f.input :password, as: :password  %>
+        <%= f.input :password_confirmation, as: :password %>
+      </div>
+
+      <br/>
+
+      Please scan the following QR code with the Google Authenticator app before continuing. <b>You will not be able to sign in until you do.</b>
+      <img src="<%= @user.google_qr_uri %>" width='200' height='200' />
+
+      <br/>
+      <br/>
+
+      If you are unable to scan the above QR code, please input the following key instead: <%= @user.google_secret %>
+      <br/>
+      <br/>
+
+      <div class="form-actions">
+        <%= f.button :submit, 'Continue', class: 'btn-primary' %>
+        <%= link_to 'Cancel', people_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>
