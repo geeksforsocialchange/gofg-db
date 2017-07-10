@@ -5,11 +5,12 @@ class CreateInvitations < ActiveRecord::Migration[5.0]
     add_column :users, :accepted_at, :datetime
     add_column :users, :google_secret, :string
 
+    User.reset_column_information
     user = User.new(email: 'kim@alliscalm.net')
+    user.google_secret = GoogleAuthenticatorRails::generate_secret
     user.generate_setup_fields
 
     user.save!
-    user.set_google_secret
   end
 
   def down
