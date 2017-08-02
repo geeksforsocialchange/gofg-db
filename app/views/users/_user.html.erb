@@ -1,0 +1,8 @@
+<td><%= object.email %></td>
+<td><%= object.created_at.to_date %></td>
+<td><%= object.invited_at.to_date %></td>
+<td><%= object.accepted_at.try(:to_date) %></td>
+<td class="actions">
+  <%= smart_listing_item_actions [ { name: :edit, url: edit_user_path(object) },
+                                   { name: :destroy, url: user_path(object), confirmation: "Are you sure you want to delete this?" }] %>
+</td>

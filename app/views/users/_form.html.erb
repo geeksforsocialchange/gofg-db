@@ -1,4 +1,16 @@
-<div class="form-inputs">
-  <%= form.input :email, as: :email %>
-  <%= form.input :password, as: :password %>
-</div>
+<td colspan="6">
+  <%= simple_form_for(@user,
+                      url: (@user.new_record? ? users_path(@user) : user_path(@user)),
+                      remote: true) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :email %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn-primary' %>
+      <%= link_to 'Cancel', users_path(@event), class: 'btn btn-default' %>
+    </div>
+  <% end %>
+</td

@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Created At</th>
+      <th>Invited At </th>
+      <th>Invitation Accepted At<th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%- smart_listing.collection.each do |user| %>
+      <tr class="editable" data-id="<%= user.id %>">
+        <%= smart_listing.render partial: 'users/user', locals: { object: user } %>
+      </tr>
+    <% end %>
+
+    <%= smart_listing.item_new colspan: 6, link: new_user_path %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= smart_listing.paginate %>
+<%= smart_listing.pagination_per_page_links %>

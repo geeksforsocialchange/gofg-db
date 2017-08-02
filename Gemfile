@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Authentication
 gem 'clearance'
+gem 'google-authenticator-rails'
 
 # Database mapping
 gem 'rails-erd'
@@ -79,6 +80,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'letter_opener'
   # REPL in tests
   gem "binding_of_caller"
 end

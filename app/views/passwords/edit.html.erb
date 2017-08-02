@@ -1,18 +1,21 @@
-<div id="clearance" class="password-reset">
-  <h2><%= t(".title") %></h2>
+<h2><%= t(".title") %></h2>
 
-  <p><%= t(".description") %></p>
+<p><%= t(".description") %></p>
 
-  <%= form_for :password_reset,
-        url: user_password_path(@user, token: @user.confirmation_token),
-        html: { method: :put } do |form| %>
-    <div class="password-field">
-      <%= form.label :password %>
-      <%= form.password_field :password %>
+<div class="row">
+  <div class="col-sm-3">
+      <%= simple_form_for :password_reset,
+            url: user_password_path(@user, token: @user.confirmation_token),
+            html: { method: :put } do |form| %>
+        <div class="form-inputs">
+          <%= form.input :password, as: :password %>
+          <%= form.input :password_confirmation, as: :password %>
+        </div>
+
+        <div class="form-actions">
+          <%= form.button :submit, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-  <% end %>
+  </div>
 </div>
