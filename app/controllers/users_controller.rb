@@ -41,9 +41,13 @@ class UsersController < ApplicationController
   end
 
   def setup
-    unless @user && !@user.try(:accepted_at)
-      redirect_to root_path, alert: 'You are not permitted to perform this action'
+    if @user.blank? || @user.accepted_at.present?
+      @message = 'You are not permitted to perform this action'
+    elsif current_user
+      @message = 'You are already signed in'
     end
+
+    redirect_to root_path, alert: @message if @message.present?
 
     session[:password_reset_token] = params[:token]
   end

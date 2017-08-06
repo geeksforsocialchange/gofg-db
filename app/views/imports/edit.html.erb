@@ -1,0 +1,122 @@
+<h1>Review</h1>
+
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+      <a href="#valid" aria-controler="home" role="tab" data-toggle="tab">
+        Valid <span class="badge"><%= @parsed_content.total_valid %></span>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#warnings" aria-controler="home" role="tab" data-toggle="tab">
+        Warnings <span class="badge"><%= @parsed_content.total_warnings %></span>
+      </a>
+    </li>
+    <li role="presentation">
+      <a href="#errors" aria-controler="home" role="tab" data-toggle="tab">
+        Errors <span class="badge"><%= @parsed_content.total_errors %></span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="valid">
+      <%- if @parsed_content.new_participant.present? %>
+        <div class="alert alert-success"><%= t('.new_participant') %></div>
+
+        <%- @parsed_content.new_participant.each do |index, data| %>
+          <%= "Entity/Person ID #{index} : #{data[:participant]}" %>
+          <br/>
+        <% end %>
+      <% end %>
+
+      <br/>
+
+      <%- if @parsed_content.existing_participant.present? %>
+        <div class="alert alert-success"><%= t('.existing_participant') %></div>
+
+        <%- @parsed_content.existing_participant.each do |index, data| %>
+          <%= "Entity/Person ID #{index} : #{data[:participant]}" %>
+          <br/>
+        <% end %>
+      <% end %>
+
+      <br/>
+
+      <%- if @parsed_content.matching_participant.present? %>
+        <div class="alert alert-success"><%= t('.matching_participant') %></div>
+
+        <%- @parsed_content.matching_participant.each do |index, data| %>
+          <%= "Entity/Person ID #{index} : #{data[:participant]}" %>
+          <br/>
+        <% end %>
+      <% end %>
+    </div>
+
+
+    <div role="tabpanel" class="tab-pane" id="warnings">
+      <%- if @parsed_content.overwrite_warning.present? %>
+        <div class="alert alert-warning"><%= t('.overwrite_warning')%></div>
+        <%- @parsed_content.overwrite_warning.each do |index, data| %>
+          <%= "Row #{index} : #{data[:participant]}" %>
+          <br/>
+        <% end %>
+      <% end %>
+
+      <br/>
+
+      <%- if @parsed_content.missing_entity_id.present? %>
+        <div class="alert alert-warning"><%= t('.missing_entity_id')%></div>
+        <%- @parsed_content.missing_entity_id.each do |index, data| %>
+          <%= "Row #{index} : #{data[:participant]}" %>
+          <br/>
+        <% end %>
+      <% end %>
+    </div>
+
+
+    <div role="tabpanel" class="tab-pane" id="errors">
+      <%- if @parsed_content.duplicate_row.present? %>
+        <div class="alert alert-danger"><%= t('.duplicate_row') %></div>
+        <%- @parsed_content.duplicate_row.each do |index, data| %>
+          <%= "Row #{index} : #{data[:participant]}" %>
+          <br/>
+        <% end %>
+      <% end %>
+
+      <br/>
+
+      <%- if @parsed_content.invalid_participant.present? %>
+        <div class="alert alert-danger"><%= t('.invalid_participant') %></div>
+        <%- @parsed_content.invalid_participant.each do |index, data| %>
+          <%= "Row #{index} : #{data[:participant]}" %> <%#, #{data[:participant].last_name}"%>
+          <%= data[:participant].errors.full_messages %>
+          <br/>
+        <% end %>
+      <% end %>
+
+      <br/>
+
+      <%- if @parsed_content.missing_participant.present? %>
+        <div class="alert alert-danger"><%= t('.missing_participant') %></div>
+
+        <%- @parsed_content.missing_participant.each do |index, data| %>
+          <%= "Row #{index} : #{data[:participant]}" %>
+          <br/>
+        <% end %>
+      <% end %>
+
+      <br/>
+
+      <%- if @parsed_content.parsing_errors.present? %>
+        <div class="alert alert-danger"><%= t('.parsing_errors') %></div>
+
+        <%- @parsed_content.parsing_errors.each do |index, data| %>
+          <%= "Row #{index}" %>
+          <br/>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -57,3 +57,54 @@ en:
   outputs:
     page_title: 'Output'
     new_button: 'New Output'
+  imports:
+    referral: 'Referral/Demographics'
+    outcome: 'Outcome Wheel'
+    edit:
+      overwrite_warning: 'Warning: Referral information has already been uploaded for the following participants. Some of the previously uploaded data may be overwritten.'
+      missing_entity_id: 'Warning: The following rows are missing an entity/person id. This will cause problems with future uploads.'
+      duplicate_row: 'Error: The following rows have entity ids that have appeared more than once in the uploaded spreadsheet. They will not be uploaded.'
+      invalid_participant: 'Error: The following participants could not be saved.'
+      new_participant: 'The following participants will be created with the information below.'
+      existing_participant: 'The following participants will be updated with the information below.'
+      missing_participant: 'Error: Matching participants could not be found for the following rows and will be skipped during the upload.'
+      matching_participant: 'The following participants will be updated with the information below.'
+      parsing_errors: 'Error: The following rows could not be read. Please check the errors below for more information.'
+      file_parsing_error: 'This file could not be processed. Please ensure the file is saved as a CSV UTF-8 (Comma delimited) file and try again.'
+    headers:
+      local authority:
+        local_authority
+      ward:
+        ward
+      gender:
+        gender
+      ethnicity:
+        ethnicity
+      other ethnic groups / backgrounds::
+        ethnicity_continued
+      religion:
+        religion
+      age:
+        age_at_referral
+      date of birth:
+        date_of_birth
+      agency/organisation name::
+        agency_name
+      LADCUA:
+        local_authority
+      ward:
+        ward
+      gender:
+        gender
+      ethnicity:
+        ethnicity
+      ethnicitycontinued_p_96:
+        ethnicity_continued
+      religion:
+        religion
+      age:
+        age_at_referral
+      dateofbirth:
+        date_of_birth
+      agencyorganisationname_p_36:
+        agency_name
