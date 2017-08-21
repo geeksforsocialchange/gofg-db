@@ -6,7 +6,6 @@ class CreateImports < ActiveRecord::Migration[5.0]
       t.integer :step
       t.references :person, foreign_key: true
       t.jsonb :result, default: {}
-      t.jsonb :content, default: {}
       t.timestamps
     end
 

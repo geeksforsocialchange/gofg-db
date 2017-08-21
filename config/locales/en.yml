@@ -61,50 +61,46 @@ en:
     referral: 'Referral/Demographics'
     outcome: 'Outcome Wheel'
     edit:
-      overwrite_warning: 'Warning: Referral information has already been uploaded for the following participants. Some of the previously uploaded data may be overwritten.'
-      missing_entity_id: 'Warning: The following rows are missing an entity/person id. This will cause problems with future uploads.'
-      duplicate_row: 'Error: The following rows have entity ids that have appeared more than once in the uploaded spreadsheet. They will not be uploaded.'
-      invalid_participant: 'Error: The following participants could not be saved.'
-      new_participant: 'The following participants will be created with the information below.'
-      existing_participant: 'The following participants will be updated with the information below.'
-      missing_participant: 'Error: Matching participants could not be found for the following rows and will be skipped during the upload.'
-      matching_participant: 'The following participants will be updated with the information below.'
-      parsing_errors: 'Error: The following rows could not be read. Please check the errors below for more information.'
-      file_parsing_error: 'This file could not be processed. Please ensure the file is saved as a CSV UTF-8 (Comma delimited) file and try again.'
+      overwrite_warning: 'Referral information already uploaded for this participant. Some of the previously uploaded data may be overwritten.'
+      missing_entity_id: 'Missing an entity/person id. This will cause problems wirh future uploads.'
+      duplicate_row: 'Entity/Person id appears more than once in the uploaded spreadsheet.'
+      invalid_participant: 'The following participants could not be saved.'
+      new_participant: 'Participant will be created.'
+      existing_participant: 'Participant will be updated.'
+      missing_participant: 'Participant could not be found.'
+      matching_participant: 'Participant will be updated.'
+      parsing_errors: 'Row could not be read. Please verify the contents are valid.'
+      file_parsing_error: 'This file could not be processed. Please ensure the file is saved as a CSV UTF-8 (Comma delimited) file and try again. If the problem persists, please contact the website administrator.'
     headers:
-      local authority:
+      Local Authority:
         local_authority
-      ward:
+      Ward:
         ward
-      gender:
+      Gender:
         gender
-      ethnicity:
+      Ethnicity:
         ethnicity
-      other ethnic groups / backgrounds::
+      Other ethnic groups / backgrounds::
         ethnicity_continued
-      religion:
+      Religion:
         religion
-      age:
+      Age:
         age_at_referral
-      date of birth:
-        date_of_birth
-      agency/organisation name::
+      Agency/Organisation Name::
         agency_name
       LADCUA:
         local_authority
-      ward:
+      Ward:
         ward
-      gender:
+      Gender:
         gender
-      ethnicity:
+      Ethnicity:
         ethnicity
-      ethnicitycontinued_p_96:
+      Ethnicitycontinued_P_96:
         ethnicity_continued
-      religion:
+      Religion:
         religion
-      age:
+      Age:
         age_at_referral
-      dateofbirth:
-        date_of_birth
-      agencyorganisationname_p_36:
+      AgencyOrganisationName_P_36:
         agency_name

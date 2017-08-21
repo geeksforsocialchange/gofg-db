@@ -4,6 +4,7 @@
       <tr>
         <th>Name</th>
         <th>Imported At</th>
+        <th>Status</th>
         <th colspan="4"></th>
       </tr>
     </thead>
@@ -13,14 +14,17 @@
         <tr>
           <td><%= link_to import.file_file_name, import_path(import) %></td>
           <td><%= import.created_at %></td>
+          <td><%= import.step %></td>
           <td>
             <%= link_to import do %>
               <i class="glyphicon glyphicon-share-alt"></i>
             <% end %>
           </td>
           <td>
-            <%= link_to edit_import_path(import) do %>
-              <i class="glyphicon glyphicon-pencil"></i>
+            <%- unless import.completed? %>
+              <%= link_to edit_import_path(import) do %>
+                <i class="glyphicon glyphicon-pencil"></i>
+              <% end %>
             <% end %>
           </td>
         </tr>

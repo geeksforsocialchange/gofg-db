@@ -4,8 +4,7 @@ class ImportsController < ApplicationController
   # GET /imports
   # GET /imports.json
   def index
-
-    @imports = smart_listing_create(:imports, Import.all, partial: 'imports/listing')
+    @imports = smart_listing_create(:imports, Import.all, partial: 'imports/listing', default_sort: {created_at: :desc})
   end
 
   # GET /imports/1
@@ -21,7 +20,8 @@ class ImportsController < ApplicationController
   # GET /imports/1/edit
   def edit
     begin
-      @parsed_content = Importer::Parser.new(@import.file, @import.type).parse
+      @parsed_content = @import.parse_file
+      @total_errors = @parsed_content.total_errors
     rescue => e
       Rails.logger.debug e
       redirect_to new_import_path, alert: t('.file_parsing_error')
@@ -35,7 +35,7 @@ class ImportsController < ApplicationController
 
     respond_to do |format|
       if @import.save
-        format.html { redirect_to edit_import_path(@import), notice: 'Import was successfully created.' }
+        format.html { redirect_to edit_import_path(@import) }
         format.json { render :show, status: :created, location: @import }
       else
         format.html { render :new }
@@ -48,10 +48,14 @@ class ImportsController < ApplicationController
   # PATCH/PUT /imports/1.json
   def update
     respond_to do |format|
-      if @import.update(import_params)
+      if @import.save_data
         format.html { redirect_to @import, notice: 'Import was successfully updated.' }
         format.json { render :show, status: :ok, location: @import }
       else
+        @parsed_content = @import.parse_file
+        @total_errors = @parsed_content.total_errors 
+
+        flash.alert = 'Import failed due to an unexpected error. Please contact the website administrator for more information.'
         format.html { render :edit }
         format.json { render json: @import.errors, status: :unprocessable_entity }
       end
@@ -78,4 +82,5 @@ class ImportsController < ApplicationController
     def import_params
       params.require(:import).permit(:file, :type)
     end
+
 end

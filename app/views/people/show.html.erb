@@ -1,44 +1,103 @@
 <h1><%= @person.first_name %> <%= @person.last_name %> <small><%= @person.type %></small></h1>
 
-<p>
-  <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-primary" %>
-  <%= link_to 'Back', people_path, class: "btn btn-secondary" %>
-</p>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Basic Information
+        </a>
+      </h4>
+    </div>
 
-<p>
-  <strong>Nicknames:</strong>
-  <%= @person.nicknames %>
-</p>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <p>
+          <strong>Nicknames:</strong>
+          <%= @person.nicknames %>
+        </p>
 
-<p>
-  <strong>Tel:</strong>
-  <%= @person.tel %>
-</p>
+        <p>
+          <strong>Tel:</strong>
+          <%= @person.tel %>
+        </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @person.email %>
-</p>
+        <p>
+          <strong>Email:</strong>
+          <%= @person.email %>
+        </p>
 
-<p>
-  <strong>Twitter:</strong>
-  <%= @person.twitter %>
-</p>
+        <p>
+          <strong>Twitter:</strong>
+          <%= @person.twitter %>
+        </p>
 
-<p>
-  <strong>Is accreditor:</strong>
-  <%= @person.is_accreditor %>
-</p>
+        <p>
+          <strong>Is accreditor:</strong>
+          <%= @person.is_accreditor %>
+        </p>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @person.dob %>
-</p>
+        <p>
+          <strong>Dob:</strong>
+          <%= @person.dob %>
+        </p>
 
-<h2>Notes</h2>
-<p>
-  <%= @person.notes %>
-</p>
+        <h4>Notes</h4>
+        <p>
+          <%= @person.notes %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          Demographic Data
+        </a>
+      </h4>
+    </div>
+
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+
+        <%- if @demographic %>
+          <p><b>Local Authority:</b> <br/> <%= @demographic.local_authority %></p>
+          <p><b>Ward:</b> <br/>  <%= @demographic.ward %></p>
+          <p><b>Gender:</b> <br/>  <%= @demographic.gender %></p>
+          <p><b>Ethnicity:</b> <br/>  <%= @demographic.ethnicity %></p>
+          <p><b>Ethnicity Continued:</b> <br/> <%= @demographic.ethnicity_continued %></p>
+          <p><b>Religion:</b> <br/> <%= @demographic.religion%></p>
+          <p><b>Age at referral:</b> <br/> <%= @demographic.age_at_referral %></p>
+          <p><b>Agency Name:</b> <br/> <%= @demographic.agency_name %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%- if @questionnaires.present?%>
+    <%- @questionnaires.each.with_index(1) do |questionnaire, index| %>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="<%= "heading#{index}" %>">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="<%= "#collapse#{index}" %>" aria-expanded="true" aria-controls="<%= "collapse#{index}" %>">
+              Questionnaire #<%= index %>
+            </a>
+          </h4>
+        </div>
+
+        <div id="<%= "collapse#{index}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<%= "heading#{index}" %>">
+          <div class="panel-body">
+            <%- questionnaire.content.each do |header, data| %>
+              <p><b><%= header %></b><br/> <%= data || '-' %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+ <% end %>
+</div>
+
 
 <% if @person.type == "Coach" %>
   <h2>Activities Coached</h2>
@@ -48,3 +107,4 @@
     <% end %>
   </ul>
 <% end %>
+

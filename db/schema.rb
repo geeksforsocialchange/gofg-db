@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 20170628041027) do
     t.integer  "step"
     t.integer  "person_id"
     t.jsonb    "result",            default: {}
-    t.jsonb    "content",           default: {}
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["person_id"], name: "index_imports_on_person_id", using: :btree
