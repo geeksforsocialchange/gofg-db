@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/authentication/step-two', to: 'user_mfa_session#new'
   post '/user_mfa_session', to: 'user_mfa_session#create'
 
+  resources :imports
   resources :activity_coaches
   #resources :attendances
   resources :memberships

@@ -1,0 +1,74 @@
+<div class="row imports">
+  <div class="col-sm-2">
+    <h1>Review</h1>
+   </div>
+   <div class="col-sm-3 pull-right">
+     <%- if @total_errors.zero? %>
+       <%= link_to "Finish Import", import_path(@import), method: :put, class: 'btn btn-primary' %>
+     <% end %>
+     <%= link_to "New Import", new_import_path, class: 'btn btn-default' %>
+   </div>
+</div>
+
+<%- unless @total_errors.zero? %>
+  <div class="alert alert-danger" role="alert">
+    This uploads contains some errors. Please correct them and click New Import to try again.
+  </div>
+<% else %>
+  <div class="alert alert-info" role="alert">
+    Please review the information below. To complete the import, click Finish Import.
+    <br/>
+    <b>Note:</b> Data in the Warnings column will still be uploaded.
+  </div>
+<% end %>
+
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <%= review_tab('errors', @total_errors, !@total_errors.zero?) %>
+    <%= review_tab('new_participant', @parsed_content.new_participant.count, @total_errors.zero?) %>
+    <%= review_tab('existing_participant', @parsed_content.total_valid_existing) %>
+    <%= review_tab('warnings', @parsed_content.total_warnings) %>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane <%= 'active' if !@total_errors.zero? %>" id="errors">
+      <table class="table">
+        <%= render 'review_table_header', valid: false %>
+
+        <%= render 'review_table_body', content: @parsed_content.parsing_errors, notes: '' %>
+        <%= render 'review_table_body', content: @parsed_content.duplicate_row, notes: t('.duplicate_row') %>
+        <%= render 'review_table_body', content: @parsed_content.invalid_participant, notes: '' %>
+        <%= render 'review_table_body', content: @parsed_content.missing_participant, notes: t('.missing_participant') %>
+
+      </table>
+    </div>
+
+    <div role="tabpanel" class="tab-pane <%= 'active' if @total_errors.zero? %>" id="new_participant">
+      <table class="table">
+        <%= render 'review_table_header', valid: true %>
+        <%= render 'review_table_body', content: @parsed_content.new_participant, notes: t('.new_participant') %>
+      </table>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="existing_participant">
+      <table class="table">
+        <%= render 'review_table_header', valid: true %>
+
+        <%= render 'review_table_body', content: @parsed_content.existing_participant, notes: t('.existing_participant') %>
+        <%= render 'review_table_body', content: @parsed_content.matching_participant, notes: t('.matching_participant') %>
+      </table>
+    </div>
+
+
+    <div role="tabpanel" class="tab-pane" id="warnings">
+      <table class="table">
+        <%= render 'review_table_header', valid: false %>
+
+        <%= render 'review_table_body', content: @parsed_content.overwrite_warning, notes: t('.overwrite_warning') %>
+        <%= render 'review_table_body', content: @parsed_content.missing_entity_id, notes: t('.missing_entity_id') %>
+      </table>
+    </div>
+
+  </div>
+</div>
+

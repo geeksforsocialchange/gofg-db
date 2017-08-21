@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 20170628041027) do
     t.index ["person_id"], name: "index_attendances_on_person_id", using: :btree
   end
 
+  create_table "demographics", force: :cascade do |t|
+    t.integer "person_id"
+    t.string  "local_authority"
+    t.string  "ward"
+    t.string  "gender"
+    t.string  "ethnicity"
+    t.string  "ethnicity_continued"
+    t.string  "religion"
+    t.string  "age_at_referral"
+    t.text    "agency_name"
+    t.index ["person_id"], name: "index_demographics_on_person_id", using: :btree
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string   "name"
     t.string   "researcher"
@@ -71,6 +84,20 @@ ActiveRecord::Schema.define(version: 20170628041027) do
     t.string   "type"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "type"
+    t.integer  "step"
+    t.integer  "person_id"
+    t.jsonb    "result",            default: {}
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["person_id"], name: "index_imports_on_person_id", using: :btree
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -123,6 +150,18 @@ ActiveRecord::Schema.define(version: 20170628041027) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "type"
+    t.string   "identifier"
+  end
+
+  create_table "questionnaires", force: :cascade do |t|
+    t.string   "name"
+    t.jsonb    "content",    default: {}
+    t.integer  "import_id"
+    t.integer  "person_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["import_id"], name: "index_questionnaires_on_import_id", using: :btree
+    t.index ["person_id"], name: "index_questionnaires_on_person_id", using: :btree
   end
 
   create_table "uploads", force: :cascade do |t|
@@ -154,11 +193,15 @@ ActiveRecord::Schema.define(version: 20170628041027) do
   add_foreign_key "activity_coaches", "people"
   add_foreign_key "attendances", "events"
   add_foreign_key "attendances", "people"
+  add_foreign_key "demographics", "people"
   add_foreign_key "documents_events", "documents"
   add_foreign_key "documents_events", "events"
   add_foreign_key "documents_people", "documents"
   add_foreign_key "documents_people", "people"
+  add_foreign_key "imports", "people"
   add_foreign_key "memberships", "organisations"
   add_foreign_key "memberships", "people"
+  add_foreign_key "questionnaires", "imports"
+  add_foreign_key "questionnaires", "people"
   add_foreign_key "uploads", "documents"
 end

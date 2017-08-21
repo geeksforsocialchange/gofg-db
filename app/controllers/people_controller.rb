@@ -10,6 +10,8 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @demographic = @person.demographic
+    @questionnaires = @person.questionnaires.order(:created_at)
   end
 
   # GET /people/new

@@ -1,0 +1,8 @@
+<h2>Results</h2>
+
+<p>Participants Created: <%= @import.result['created'] %></p>
+<p>Participants Updated: <%= @import.result['updated'] %></p>
+<p>Partcipants Created/Updated with Warnings: <%= @import.result['with_warnings'] %></p>
+
+<%= link_to 'Back', imports_path, class: "btn btn-secondary" %>
+

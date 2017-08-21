@@ -1,0 +1,13 @@
+<%- content.each do |index, data| %>
+  <tr>
+    <td><%= index %></td>
+    <td><%= data[:participant].try(:identifier) %></td>
+    <td><%= data[:participant].try(:first_name) %></td>
+    <td><%= data[:participant].try(:last_name) %></td>
+    <td><%= data[:participant].try(:dob) %></td>
+    <td>
+      <%= notes %>
+      <%= data[:errors] %>
+    </td>
+  </tr>
+<% end %>
