@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -54,7 +54,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'database_cleaner'
   gem 'faker', git: "https://github.com/stympy/faker"
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '3.6.1'
 end
 
 group :development do
@@ -73,6 +73,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'mocha'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', :require => false
