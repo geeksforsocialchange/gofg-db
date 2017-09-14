@@ -19,7 +19,6 @@ class User < ApplicationRecord
   private
 
   def password_matches_confirmation
-    Rails.logger.debug [password, password_confirmation]
     unless password == password_confirmation
       errors.add(:password_confirmation, 'does not match password')
     end

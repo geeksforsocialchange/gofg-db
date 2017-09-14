@@ -24,6 +24,7 @@ class ImportsController < ApplicationController
       @total_errors = @parsed_content.total_errors
     rescue => e
       Rails.logger.debug e
+      puts e
       redirect_to new_import_path, alert: t('.file_parsing_error')
     end
   end
@@ -53,7 +54,7 @@ class ImportsController < ApplicationController
         format.json { render :show, status: :ok, location: @import }
       else
         @parsed_content = @import.parse_file
-        @total_errors = @parsed_content.total_errors 
+        @total_errors = @parsed_content.total_errors
 
         flash.alert = 'Import failed due to an unexpected error. Please contact the website administrator for more information.'
         format.html { render :edit }

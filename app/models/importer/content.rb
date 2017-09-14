@@ -3,9 +3,9 @@ module Importer
     include Virtus.model
 
     #valid
-    attribute :new_participant, Hash, default: {}      #referral
-    attribute :existing_participant, Hash, default: {} #referral
-    attribute :matching_participant, Hash, default: {} #outcome
+    attribute :new_participants, Hash, default: {}      #referral
+    attribute :existing_participants, Hash, default: {} #referral
+    attribute :matching_participants, Hash, default: {} #outcome
 
     #warnings
     attribute :overwrite_warning, Hash, default: {}  #referral
@@ -13,12 +13,12 @@ module Importer
 
     #errors
     attribute :duplicate_row, Hash, default: {} #referral
-    attribute :invalid_participant, Hash, default: {}  #referral
+    attribute :invalid_participants, Hash, default: {}  #referral
     attribute :parsing_errors, Hash, default: {}  #referral
-    attribute :missing_participant, Hash, default: {}  #outcome
+    attribute :missing_participants, Hash, default: {}  #outcome
 
     def total_valid
-      existing_participant.length + matching_participant.length + new_participant.length
+      existing_participants.length + matching_participants.length + new_participants.length
     end
 
     def total_warnings
@@ -26,15 +26,15 @@ module Importer
     end
 
     def total_errors
-      duplicate_row.length + invalid_participant.length + parsing_errors.length + missing_participant.length
+      duplicate_row.length + invalid_participants.length + parsing_errors.length + missing_participants.length
     end
 
     def total_valid_existing
-      existing_participant.length + matching_participant.length
+      existing_participants.length + matching_participants.length
     end
 
     def duplicate_rows?(identifier)
-      new_participant.has_key?(identifier) || existing_participant.has_key?(identifier)
+      new_participants.has_key?(identifier) || existing_participants.has_key?(identifier)
     end
 
     def has_errors?
@@ -42,7 +42,7 @@ module Importer
     end
 
     def valid_referral
-      [new_participant, existing_participant, overwrite_warning, missing_entity_id].inject(&:merge)
+      [new_participants, existing_participants, overwrite_warning, missing_entity_id].inject(&:merge)
     end
   end
 end
