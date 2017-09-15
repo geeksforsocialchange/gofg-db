@@ -6,9 +6,7 @@ class User < ApplicationRecord
   belongs_to :inviter, class_name: 'User', foreign_key: :inviter_id
   validate :password_matches_confirmation, on: :update
 
-  after_create :send_invitation
-
-  acts_as_google_authenticated issuer: 'GOFG', drift: 31, lookup_token: :remember_token
+  acts_as_google_authenticated issuer: Rails.env.development? ? 'GOFG - development' : 'GOFG', drift: 31, lookup_token: :remember_token
 
   def generate_setup_fields
     self.password = Clearance::Token.new
@@ -24,7 +22,4 @@ class User < ApplicationRecord
     end
   end
 
-  def send_invitation
-    UserMailer.invitation_email(self).deliver_now
-  end
 end

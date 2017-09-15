@@ -2,7 +2,6 @@
 require 'spec_helper'
 require 'support/factory_girl'
 
-ENV['RAILS_ENV'] ||= 'test'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'

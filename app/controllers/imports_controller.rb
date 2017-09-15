@@ -24,7 +24,6 @@ class ImportsController < ApplicationController
       @total_errors = @parsed_content.total_errors
     rescue => e
       Rails.logger.debug e
-      puts e
       redirect_to new_import_path, alert: t('.file_parsing_error')
     end
   end

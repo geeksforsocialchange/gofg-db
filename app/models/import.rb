@@ -29,7 +29,8 @@ class Import < ApplicationRecord
   end
 
   def parse_file
-    "Importer::#{type.capitalize}Parser".constantize.new(file).parse
+    parser = "Importer::#{type.capitalize}Parser".constantize
+    parser.new(file).parse
   end
 
   private
@@ -45,8 +46,8 @@ class Import < ApplicationRecord
     content = parse_file
 
     content.valid_referral.each { |i, data| build_data(data) }
-    self.result = { created: content.new_participant.count,
-                    updated: content.existing_participant.count,
+    self.result = { created: content.new_participants.count,
+                    updated: content.existing_participants.count,
                     with_warnings: content.total_warnings }
   end
 
