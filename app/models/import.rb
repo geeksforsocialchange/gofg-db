@@ -17,36 +17,38 @@ class Import < ApplicationRecord
     false
   end
 
+  def save_data
+    begin
+      self.send("save_#{type}")
+      self.step = 'completed'
+      save!
+    rescue => e
+      Rails.logger.debug e
+      return false
+    end
+  end
+
+  def parse_file
+    parser = "Importer::#{type.capitalize}Parser".constantize
+    parser.new(file).parse
+  end
+
+  private
+
   def save_outcome
     content = parse_file
 
-    content.matching_participant.each { |i, data| build_data(data) }
-    self.result = { updated: content.matching_participant.count }
+    content.matching_participants.each { |i, data| build_data(data) }
+    self.result = { updated: content.matching_participants.count }
   end
 
   def save_referral
     content = parse_file
 
     content.valid_referral.each { |i, data| build_data(data) }
-    self.result = { created: content.new_participant.count, updated: content.existing_participant.count, with_warnings: content.total_warnings }
-  end
-
-  def parse_file
-    Importer::Parser.new(file, type).parse
-  end
-
-  def save_data
-    transaction do
-      begin
-        send("save_#{type}")
-        self.step = 'completed'
-        save!
-      rescue => e
-        Rails.logger.debug e
-        Rails.logger.debug e.backtrace.join("\n")
-        return false
-      end
-    end
+    self.result = { created: content.new_participants.count,
+                    updated: content.existing_participants.count,
+                    with_warnings: content.total_warnings }
   end
 
   def build_data(data)
@@ -55,7 +57,6 @@ class Import < ApplicationRecord
 
     Demographic.create!(data[:demographic].merge(person_id: participant.id)) if data[:demographic]
     participant.questionnaires.create!(content: data[:questionnaire], import_id: self.id)
-
   end
 
 end

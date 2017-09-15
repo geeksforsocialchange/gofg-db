@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     @user.inviter_id = current_user.id
 
     if @user.set_google_secret
+       UserMailer.invitation_email(@user).deliver_now
        render format: :js
     else
 
