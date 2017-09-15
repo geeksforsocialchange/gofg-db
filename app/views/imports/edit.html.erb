@@ -12,7 +12,7 @@
 
 <%- unless @total_errors.zero? %>
   <div class="alert alert-danger" role="alert">
-    This uploads contains some errors. Please correct them and click New Import to try again.
+    This upload contains some errors. Please correct them and click New Import to try again.
   </div>
 <% else %>
   <div class="alert alert-info" role="alert">
@@ -25,8 +25,8 @@
 <div>
   <ul class="nav nav-tabs" role="tablist">
     <%= review_tab('errors', @total_errors, !@total_errors.zero?) %>
-    <%= review_tab('new_participant', @parsed_content.new_participant.count, @total_errors.zero?) %>
-    <%= review_tab('existing_participant', @parsed_content.total_valid_existing) %>
+    <%= review_tab('new_participants', @parsed_content.new_participants.count, @total_errors.zero?) %>
+    <%= review_tab('existing_participants', @parsed_content.total_valid_existing) %>
     <%= review_tab('warnings', @parsed_content.total_warnings) %>
   </ul>
 
@@ -37,25 +37,25 @@
 
         <%= render 'review_table_body', content: @parsed_content.parsing_errors, notes: '' %>
         <%= render 'review_table_body', content: @parsed_content.duplicate_row, notes: t('.duplicate_row') %>
-        <%= render 'review_table_body', content: @parsed_content.invalid_participant, notes: '' %>
-        <%= render 'review_table_body', content: @parsed_content.missing_participant, notes: t('.missing_participant') %>
+        <%= render 'review_table_body', content: @parsed_content.invalid_participants, notes: '' %>
+        <%= render 'review_table_body', content: @parsed_content.missing_participants, notes: t('.missing_participants') %>
 
       </table>
     </div>
 
-    <div role="tabpanel" class="tab-pane <%= 'active' if @total_errors.zero? %>" id="new_participant">
+    <div role="tabpanel" class="tab-pane <%= 'active' if @total_errors.zero? %>" id="new_participants">
       <table class="table">
         <%= render 'review_table_header', valid: true %>
-        <%= render 'review_table_body', content: @parsed_content.new_participant, notes: t('.new_participant') %>
+        <%= render 'review_table_body', content: @parsed_content.new_participants, notes: t('.new_participants') %>
       </table>
     </div>
 
-    <div role="tabpanel" class="tab-pane" id="existing_participant">
+    <div role="tabpanel" class="tab-pane" id="existing_participants">
       <table class="table">
         <%= render 'review_table_header', valid: true %>
 
-        <%= render 'review_table_body', content: @parsed_content.existing_participant, notes: t('.existing_participant') %>
-        <%= render 'review_table_body', content: @parsed_content.matching_participant, notes: t('.matching_participant') %>
+        <%= render 'review_table_body', content: @parsed_content.existing_participants, notes: t('.existing_participants') %>
+        <%= render 'review_table_body', content: @parsed_content.matching_participants, notes: t('.matching_participants') %>
       </table>
     </div>
 

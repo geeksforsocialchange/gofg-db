@@ -53,7 +53,7 @@ class ImportsController < ApplicationController
         format.json { render :show, status: :ok, location: @import }
       else
         @parsed_content = @import.parse_file
-        @total_errors = @parsed_content.total_errors 
+        @total_errors = @parsed_content.total_errors
 
         flash.alert = 'Import failed due to an unexpected error. Please contact the website administrator for more information.'
         format.html { render :edit }
