@@ -37,6 +37,9 @@ gem 'dropzonejs-rails'
 #multiselect
 gem 'select2-rails'
 
+#Authorization
+gem 'cancancan'
+
 gem 'virtus'
 # markdown?
 # geolocation?

@@ -1,8 +1,9 @@
 class UserMfaSessionController < ApplicationController
 
+  skip_authorize_resource
   skip_before_action :check_mfa
-  def new
 
+  def new
   end
 
   def create
