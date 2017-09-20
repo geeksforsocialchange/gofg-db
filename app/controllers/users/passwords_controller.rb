@@ -1,4 +1,5 @@
 class Users::PasswordsController < Clearance::PasswordsController
+  skip_authorize_resource
 
   skip_before_action :check_mfa, only: [:create, :edit, :new, :update]
 

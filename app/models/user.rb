@@ -6,6 +6,10 @@ class User < ApplicationRecord
   belongs_to :inviter, class_name: 'User', foreign_key: :inviter_id
   validate :password_matches_confirmation, on: :update
 
+  enum role: [:importer, :admin]
+
+  validates :role, presence: true, inclusion: { in: self.roles.keys }
+
   acts_as_google_authenticated issuer: Rails.env.development? ? 'GOFG - development' : 'GOFG', drift: 31, lookup_token: :remember_token
 
   def generate_setup_fields
