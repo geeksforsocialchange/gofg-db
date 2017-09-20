@@ -8,6 +8,10 @@
       <%= f.input :email %>
     </div>
 
+    <div class="form-inputs">
+      <%= f.input :role, collection: User.roles.keys, include_blank: false  %>
+    <div>
+
     <div class="form-actions">
       <%= f.button :submit, class: 'btn-primary' %>
       <%= link_to 'Cancel', users_path(@event), class: 'btn btn-default' %>

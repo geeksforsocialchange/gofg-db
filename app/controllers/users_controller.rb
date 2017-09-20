@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
 
+
   before_action :set_user, only: [:edit, :update, :destroy]
   before_action :set_user_by_id_and_confirmation_token, only: [:setup, :complete]
   skip_before_action :require_login, only: [:setup, :complete]
   skip_before_action :check_mfa, only: [:setup, :complete]
+
+  skip_authorize_resource only: [:setup, :complete]
 
   def index
     @users = smart_listing_create(:users, User.all, partial: 'users/listing')
@@ -82,11 +85,11 @@ class UsersController < ApplicationController
   end
 
   def user_create_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :role)
   end
 
   def user_update_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :role)
   end
 
   def user_setup_params
