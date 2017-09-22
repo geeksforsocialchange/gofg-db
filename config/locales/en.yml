@@ -70,7 +70,7 @@ en:
       missing_participants: 'Participant could not be found.'
       matching_participants: 'Participant will be updated.'
       parsing_errors: 'Row could not be read. Please verify the contents are valid.'
-      file_parsing_error: 'This file could not be processed. Please ensure the file is saved as a CSV UTF-8 (Comma delimited) file and try again. If the problem persists, please contact the website administrator.'
+      file_parsing_error: 'This file could not be processed. Please ensure the file is saved as a CSV UTF-8 (Comma delimited) file with headers and try again. If the problem persists, please contact the website administrator.'
     headers:
       Local Authority:
         local_authority
