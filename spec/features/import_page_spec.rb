@@ -37,7 +37,7 @@ describe 'Imports' do
       expect(page).not_to have_content 'Finish Import'
     end
 
-    scenario 'Upload is valia and completed' do
+    scenario 'Upload is valid and completed' do
       visit '/imports/new'
 
       attach_file('import[file]', Rails.root + 'spec/fixtures/MAV_Referral_information_Valid.csv')
@@ -78,7 +78,7 @@ describe 'Imports' do
 
       visit '/imports/new'
 
-      attach_file('File', Rails.root + 'spec/fixtures/MAV_Star_Outcome_Wheel_Valid.csv')
+      attach_file('File', Rails.root + 'spec/fixtures/correct_start_outcomes.csv')
       select('Outcome Wheel', from: 'Type')
 
       click_button 'Create Import'
