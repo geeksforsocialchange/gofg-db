@@ -16,7 +16,7 @@ class Event < ApplicationRecord
   end
 
   def duration
-    event_end ? (event_end - event_start) / 60 / 60 : 0
+    event_end ? ((event_end - event_start) / 60 / 60).round(1) : 0
   end
 
   def to_s
