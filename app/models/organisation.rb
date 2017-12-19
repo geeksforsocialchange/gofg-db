@@ -5,12 +5,7 @@ class Organisation < ApplicationRecord
 
   scope :like, ->(filter) { where("name ILIKE :search OR email ILIKE :search", search: "%#{filter}%") }
 
-  enum activity: {
-    "Boxing": 0,
-    "Football": 1,
-    "Theatre": 2,
-    "Dance": 3
-  }
+  validates :activity, length: { maximum: 255 }
 
   def address
     "#{address_1}, #{address_2}, #{city}, #{postcode}"

@@ -11,7 +11,7 @@ Faker::Config.locale = 'en-GB'
 10.times do |n|
   Organisation.create(
     name:     Faker::Company.name,
-    activity: rand(0..3),
+    activity: ['Boxing', 'Film', 'Football'].sample,
     email:    Faker::Internet.email,
     tel:      Faker::PhoneNumber.cell_phone,
     address_1: Faker::Address.street_address,
