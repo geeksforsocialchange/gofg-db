@@ -6,6 +6,8 @@ class Person < ApplicationRecord
   has_one :demographic
   has_many :questionnaires
 
+  has_and_belongs_to_many :documents
+
   validates_presence_of :first_name, :last_name, :type
   validates_uniqueness_of :identifier, allow_blank: true, message: "person/entity id %{value} has already been taken"
 

@@ -113,6 +113,14 @@
  <% end %>
 </div>
 
+<h2>Documents</h2>
+<%- if @person.documents.present? %>
+  <%- @person.documents.each do |document| %>
+    <%= document.name %> <%= link_to 'View', document_path(document) %>
+  <% end %>
+<% else %>
+  <p>None</p>
+<% end %>
 
 <% if @person.type == "Coach" %>
   <h2>Activities Coached</h2>
