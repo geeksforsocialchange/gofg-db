@@ -84,3 +84,11 @@ $(document).ready(function() {
       });
   })
 })
+
+
+$(document).ready(function() {
+  $('#interview_person_ids').select2()
+  $('#gallery_person_ids').select2()
+  $('#output_person_ids').select2()
+  $('#document_person_ids').select2()
+})

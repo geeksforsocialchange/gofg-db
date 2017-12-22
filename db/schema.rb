@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171219133046) do
+ActiveRecord::Schema.define(version: 20171222063649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,10 +80,10 @@ ActiveRecord::Schema.define(version: 20171219133046) do
     t.string "event_type"
     t.string "location"
     t.text "notes"
-    t.integer "other_attendee_count"
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "other_attendees"
   end
 
   create_table "imports", id: :serial, force: :cascade do |t|
@@ -151,6 +151,8 @@ ActiveRecord::Schema.define(version: 20171219133046) do
     t.datetime "updated_at", null: false
     t.string "type"
     t.string "identifier"
+    t.string "consent"
+    t.date "consent_granted_on"
   end
 
   create_table "questionnaires", id: :serial, force: :cascade do |t|

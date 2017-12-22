@@ -6,7 +6,7 @@ FactoryGirl.define do
     event_type "MyString"
     location "MyString"
     notes "MyText"
-    other_attendee_count 1
+    other_attendees "MyText"
     type ""
   end
 end

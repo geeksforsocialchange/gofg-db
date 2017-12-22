@@ -7,6 +7,6 @@ class GalleriesController < DocumentsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:gallery).permit(:name, :researcher, :conducted_at, :location, :notes, :description, :type)
+      params.require(:gallery).permit(*trusted_parameters)
     end
 end

@@ -74,7 +74,7 @@ end
     event_end: start + rand(0..5).hours,
     location: Faker::Company.name,
     notes: Faker::Lorem.paragraph(1),
-    other_attendee_count: rand(0..20),
+    other_attendees: Faker::Lorem.paragraph(1),
     type: ["Fieldwork", "Activity", "Meeting"].sample
   )
 end

@@ -12,6 +12,10 @@ class Person < ApplicationRecord
   scope :like, ->(filter) { where("first_name ILIKE :search OR last_name ILIKE :search OR email ILIKE :search", search: "%#{filter}%") }
   #default_scope { order(last_name: :asc, first_name: :asc) }
 
+  def self.consent_types
+    %w(not_yet_gained personal_only parental_and_personal)
+  end
+
   def to_s
     "#{last_name}, #{first_name}"
   end
@@ -23,5 +27,6 @@ class Person < ApplicationRecord
   def is_participant?
     type == 'Participant'
   end
+
 
 end

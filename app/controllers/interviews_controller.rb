@@ -7,6 +7,6 @@ class InterviewsController < DocumentsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:interview).permit(:name, :researcher, :conducted_at, :location, :notes, :description, :type)
+      params.require(:interview).permit(*trusted_parameters)
     end
 end
