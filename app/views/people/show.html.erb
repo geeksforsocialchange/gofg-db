@@ -1,3 +1,8 @@
+<p>
+  <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-primary" %>
+  <%= link_to 'Back', people_path, class: "btn btn-secondary" %>
+</p>
+
 <h1><%= @person.first_name %> <%= @person.last_name %> <small><%= @person.type %></small></h1>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -40,6 +45,16 @@
         <p>
           <strong>Dob:</strong>
           <%= @person.dob %>
+        </p>
+
+        <p>
+          <strong>Consent:</strong>
+          <%= t("people.#{@person.consent}") if @person.consent.present? %>
+        </p>
+
+        <p>
+          <strong>Consent granted on:</strong>
+          <%= @person.consent_granted_on %>
         </p>
 
         <h4>Notes</h4>
@@ -98,6 +113,14 @@
  <% end %>
 </div>
 
+<h2>Documents</h2>
+<%- if @person.documents.present? %>
+  <%- @person.documents.each do |document| %>
+    <%= document.name %> <%= link_to 'View', document_path(document) %>
+  <% end %>
+<% else %>
+  <p>None</p>
+<% end %>
 
 <% if @person.type == "Coach" %>
   <h2>Activities Coached</h2>

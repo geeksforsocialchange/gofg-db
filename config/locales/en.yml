@@ -24,6 +24,9 @@ en:
   people:
     page_title: "People"
     new_button: "New Person"
+    personal_only: 'Personal Only'
+    parental_and_personal: 'Parental and Personal'
+    not_yet_gained: 'Not yet gained'
   mentors:
     page_title: "Mentors"
     new_button: "New Mentor"

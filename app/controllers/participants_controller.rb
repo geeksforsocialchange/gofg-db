@@ -7,6 +7,6 @@ class ParticipantsController < PeopleController
     end
 
     def person_params
-      params.require(:participant).permit(:first_name, :last_name, :nicknames, :tel, :email, :twitter, :is_accreditor, :dob, :notes, :type)
+      params.require(:participant).permit(*trusted_parameters)
     end
 end

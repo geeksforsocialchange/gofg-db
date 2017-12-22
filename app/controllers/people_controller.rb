@@ -73,8 +73,12 @@ class PeopleController < ApplicationController
       params[:filter].blank? ? Person.all : Person.like(params[:filter])
     end
 
+    def trusted_parameters
+      [:first_name, :last_name, :nicknames, :tel, :email, :twitter, :is_accreditor, :dob, :notes, :type, :consent, :consent_granted_on]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:first_name, :last_name, :nicknames, :tel, :email, :twitter, :is_accreditor, :dob, :notes, :type)
+      params.require(:person).permit(*trusted_parameters)
     end
 end

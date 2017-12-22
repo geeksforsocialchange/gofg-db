@@ -2,7 +2,7 @@ class Document < ApplicationRecord
 
   has_and_belongs_to_many :people
   has_and_belongs_to_many :events
-  has_many :uploads
+  has_many :uploads, dependent: :destroy
 
   validates_presence_of :name, :type
 

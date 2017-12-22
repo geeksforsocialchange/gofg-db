@@ -17,6 +17,8 @@
         <%= f.input :twitter, label: 'Twitter handle' %>
         <%= f.input :is_accreditor, as: :boolean %>
         <%= f.input :dob, as: :date %>
+        <%= f.input :consent, collection: Person.consent_types, label_method: lambda { |type| t("people.#{type}") } %>
+        <%= f.input :consent_granted_on, as: :date, include_blank: true %>
         <%= f.input :notes, input_html: {rows: 10} %>
       </div>
 

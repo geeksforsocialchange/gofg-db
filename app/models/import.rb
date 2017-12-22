@@ -39,7 +39,9 @@ class Import < ApplicationRecord
     content = parse_file
 
     content.matching_participants.each { |i, data| build_data(data) }
-    self.result = { updated: content.matching_participants.count }
+    self.result = { updated: content.matching_participants.count,
+                    errors: content.missing_participants.count
+                  }
   end
 
   def save_referral
@@ -48,7 +50,9 @@ class Import < ApplicationRecord
     content.valid_referral.each { |i, data| build_data(data) }
     self.result = { created: content.new_participants.count,
                     updated: content.existing_participants.count,
-                    with_warnings: content.total_warnings }
+                    with_warnings: content.total_warnings,
+                    errors: content.total_errors
+                  }
   end
 
   def build_data(data)

@@ -8,6 +8,7 @@
         <%= f.input :researcher %>
         <%= f.input :conducted_at, as: :datetime %>
         <%= f.input :location %>
+        <%= f.association :people %>
         <%= f.input :description, input_html: {rows: 10} %>
         <%= f.input :notes, input_html: {rows: 10} %>
 
@@ -40,3 +41,8 @@
     <% end %>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $('#interview_person_ids').select2()
+  })
+</script>

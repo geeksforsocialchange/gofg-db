@@ -80,14 +80,7 @@ class AttendancesController < ApplicationController
     end
 
     def set_people
-      @people = case @event.type
-                when 'Activity'
-                  Participant.order(:last_name)
-                when 'Fieldwork'
-                  Person.where.not(type: 'Participant').order(:last_name)
-                else
-                  Person.order(:last_name)
-                end
+      @people = Person.order(:last_name)
     end
 
     def scope

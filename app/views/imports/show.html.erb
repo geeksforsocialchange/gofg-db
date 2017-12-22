@@ -3,6 +3,7 @@
 <p>Participants Created: <%= @import.result['created'] %></p>
 <p>Participants Updated: <%= @import.result['updated'] %></p>
 <p>Partcipants Created/Updated with Warnings: <%= @import.result['with_warnings'] %></p>
+<p>Rows skipped due to errors: <%= @import.result['errors'] %></p>
 
 <%= link_to 'Back', imports_path, class: "btn btn-secondary" %>
 

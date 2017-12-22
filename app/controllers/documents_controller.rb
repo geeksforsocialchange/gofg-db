@@ -63,6 +63,13 @@ class DocumentsController < ApplicationController
     end
   end
 
+  protected
+  helper_method :people
+
+  def people
+    @people ||= Person.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
@@ -73,8 +80,13 @@ class DocumentsController < ApplicationController
       params[:filter].blank? ? Document.all : Document.like(params[:filter])
     end
 
+    def trusted_parameters
+      [:name, :researcher, :conducted_at, :location, :notes, :description, :type, person_ids: []]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:name, :researcher, :conducted_at, :location, :notes, :description, :type)
+      params.require(:document).permit(*trusted_parameters)
     end
+
 end

@@ -6,6 +6,6 @@ class ActivitiesController < EventsController
     end
 
     def event_params
-      params.require(:activity).permit(:name, :event_start, :event_end, :event_type, :location, :notes, :other_attendee_count, :type)
+      params.require(:activity).permit(*trusted_parameters)
     end
 end

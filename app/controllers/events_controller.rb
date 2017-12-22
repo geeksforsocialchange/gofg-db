@@ -71,8 +71,12 @@ class EventsController < ApplicationController
       params[:filter].blank? ? Event.all : Event.like(params[:filter])
     end
 
+    def trusted_parameters
+      [:name, :event_start, :event_end, :event_type, :location, :notes, :other_attendees, :type]
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :event_start, :event_end, :event_type, :location, :notes, :other_attendee_count, :type)
+      params.require(:event).permit(*trusted_parameters)
     end
 end

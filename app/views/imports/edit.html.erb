@@ -3,16 +3,16 @@
     <h1>Review</h1>
    </div>
    <div class="col-sm-3 pull-right">
-     <%- if @total_errors.zero? %>
-       <%= link_to "Finish Import", import_path(@import), method: :put, class: 'btn btn-primary' %>
-     <% end %>
+     <%= link_to "Finish Import", import_path(@import), method: :put, class: 'btn btn-primary' %>
      <%= link_to "New Import", new_import_path, class: 'btn btn-default' %>
    </div>
 </div>
 
 <%- unless @total_errors.zero? %>
   <div class="alert alert-danger" role="alert">
-    This upload contains some errors. Please correct them and click New Import to try again.
+    This upload contains some errors. Click Finish Import to continue anyway or New Import to try again.
+    <br/>
+    <b>Note:</b> Data in the Warnings column will still be uploaded.
   </div>
 <% else %>
   <div class="alert alert-info" role="alert">

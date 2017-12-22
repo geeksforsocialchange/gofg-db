@@ -20,6 +20,14 @@
   <%= @document.conducted_at %>
 </p>
 
+<p>
+  <strong>People:</strong>
+  <%- @document.people.each do |person| %>
+    <br/>
+    <%= person %> (<%= person.type %>)
+  <% end %>
+</p>
+
 <br/>
 
 <%- if @document.is_interview? %>
@@ -30,7 +38,16 @@
   <%= list_uploads('audio', true) %>
 <% elsif @document.is_gallery? %>
   <h4>Photos</h4>
-  <%= list_uploads('photo', true) %>
+  <div class="row">
+    <%- @document.uploads.each do |upload| %>
+      <div class="col-sm-6 gallery-photo">
+        <%= image_tag upload.attachment.url(:medium) %>
+        <%= link_to download_document_upload_url(@document, upload) do%>
+          <span class="glyphicon glyphicon-download-alt" aria-hidden='true'></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 <% else %>
   <h4>Files</h4>
   <%= list_uploads('file', true) %>
