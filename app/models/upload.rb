@@ -9,7 +9,7 @@ class Upload < ApplicationRecord
 
   validates_attachment_presence :attachment
 
-  validates_attachment_file_name :attachment, matches: [/mp3\z/, /ogg\z/, /wav\z/, /wma\z/, /webm\z/], if: :audio?
+  validates_attachment_file_name :attachment, matches: [/mp3\z/i, /ogg\z/i, /wav\z/i, /wma\z/i, /webm\z/i], if: :audio?
   validates_attachment_content_type :attachment, content_type: /\Aimage/, if: :photo?
 
   scope :by_subtype, ->(subtype) { where(subtype: subtype) }
