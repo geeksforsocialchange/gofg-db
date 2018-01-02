@@ -46,6 +46,8 @@ gem 'virtus'
 # mapping?
 # google authentication?
 
+gem 'nokogiri', '>= 1.8.1'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-sass-official'
 end
