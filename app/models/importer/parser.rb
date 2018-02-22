@@ -15,6 +15,8 @@ module Importer
       @header           = extract_column_header
       @secondary_header = extract_column_header
 
+      replace_duplicate_headers
+
       @data.each_with_index do |line, i|
         index = i + 1 #start at 1
         row = line.map { |l| l.strip if l.present? }
@@ -40,6 +42,32 @@ module Importer
       return unless @data.first.any? { |header| header.present? &&  header.match(/PersonID|EntityID/) }
 
       @data.slice!(0).map { |l| l.strip if l.present? }
+    end
+
+    #Replace duplicates in primary header with value in secondary header. If secondary header is a duplicate too, append a number instead
+    def replace_duplicate_headers
+      duplicates = @header.each_with_object(Hash.new(0)) { |elem, counts| counts[elem] += 1 }.keep_if { |_, v| v > 1 }.keys
+
+      return @header unless duplicates.present?
+
+      if duplicates.present?
+        new_header = []
+
+        @header.collect.with_index do |element, i|
+          unless duplicates.include?(element)
+            new_header << element
+            next
+          end
+
+          if @secondary_header.blank? || new_header.include?(@secondary_header[i])
+            new_header << "#{@secondary_header[i]} (column #{i})"
+          else
+            new_header << @secondary_header[i]
+          end
+        end
+
+        @header = new_header
+      end
     end
 
     def display_error(error)
