@@ -13,8 +13,8 @@
     <tbody>
       <% smart_listing.collection.each do |peer| %>
         <tr>
-          <td><%= link_to peer.participant, participant_path(peer.participant) %></td>
-          <td><%= link_to peer.mentor, mentor_path(peer.mentor) %></td>
+          <td><%= link_to peer.participant, participant_path(peer.participant) if peer.participant.present? %></td>
+          <td><%= link_to peer.mentor, mentor_path(peer.mentor) if peer.mentor.present? %></td>
           <td><%= peer.peer_start %></td>
           <td><%= peer.peer_end %></td>
           <td><%= link_to 'Show', peer %></td>
